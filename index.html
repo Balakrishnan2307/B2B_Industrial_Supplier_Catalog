@@ -1,0 +1,1804 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B2B Industrial Supplier Catalog</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Google Fonts: Poppins & Open Sans -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            /* Brand Colors (Constant) */
+            --primary-color: #2c2e56;
+            --accent-color: #d4af37;
+
+            /* Light Mode Variables (Default) */
+            --bg-body: #ffffff;
+            --text-body: #1a1a1a;
+            --bg-secondary: #f4f6f9;
+            --bg-card: #ffffff;
+            --bg-nav: #ffffff;
+            --bg-input: #ffffff;
+            --border-color: #e0e0e0;
+            --text-muted: #6c757d;
+
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Open Sans', sans-serif;
+        }
+
+        /* Dark Mode Variables */
+        [data-theme="dark"] {
+            --bg-body: #121212;
+            /* Very Dark Grey/Black */
+            --text-body: #e0e0e0;
+            --bg-secondary: #1e1e2e;
+            /* Slightly lighter dark */
+            --bg-card: #1e1e2e;
+            --bg-nav: #121212;
+            --bg-input: #2c2e3a;
+            --border-color: #333344;
+            --text-muted: #a0a0b0;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-body);
+            background-color: var(--bg-body);
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: var(--font-heading);
+            font-weight: 600;
+        }
+
+        /* --- Navigation --- */
+        .navbar {
+            background-color: var(--bg-nav);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            padding: 1rem 0;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            color: var(--primary-color) !important;
+            font-size: 1.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-link {
+            color: var(--text-body);
+            font-weight: 500;
+            margin: 0 10px;
+            position: relative;
+        }
+
+        /* Standard Hover (Light Mode) */
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary-color);
+        }
+
+        /* UPDATED: Dark Mode Hover (Gold Accent) */
+        [data-theme="dark"] .nav-link:hover,
+        [data-theme="dark"] .nav-link.active {
+            color: var(--accent-color);
+        }
+
+        /* Underline animation */
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s;
+        }
+
+        [data-theme="dark"] .nav-link::after {
+            background-color: var(--accent-color);
+            /* Gold underline in dark mode */
+        }
+
+        [dir="ltr"] .nav-link::after {
+            left: 0;
+            right: auto;
+        }
+
+        [dir="rtl"] .nav-link::after {
+            right: 0;
+            left: auto;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Dropdown Menu Styling */
+        .dropdown-menu {
+            border: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-top: 3px solid var(--accent-color);
+            border-radius: 4px;
+            padding: 10px 0;
+            background-color: var(--bg-card);
+        }
+
+        .dropdown-item {
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            padding: 10px 20px;
+            color: var(--text-body);
+        }
+
+        .dropdown-item:hover,
+        .dropdown-item.active {
+            background-color: var(--bg-secondary);
+            color: var(--primary-color);
+            padding-left: 25px;
+            /* Slight move effect on hover */
+        }
+
+        [dir="rtl"] .dropdown-item:hover,
+        [dir="rtl"] .dropdown-item.active {
+            padding-left: 20px;
+            padding-right: 25px;
+        }
+
+        /* Dark Mode Dropdown Hover */
+        [data-theme="dark"] .dropdown-item:hover,
+        [data-theme="dark"] .dropdown-item.active {
+            color: var(--accent-color);
+        }
+
+        /* Navbar Controls (RTL & Theme) */
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-control {
+            border: 1px solid var(--border-color);
+            color: var(--text-body);
+            background: transparent;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-control:hover {
+            background-color: var(--bg-secondary);
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        [data-theme="dark"] .btn-control {
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+            /* background-color: white; */
+        }
+
+        [data-theme="dark"] .btn-control:hover {
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+
+        [data-theme="dark"] .navbar-toggler {
+            color: white;
+            background-color: white;
+            /* padding: 20px; */
+            border-radius: 5px;
+        }
+
+        /* --- Hero Section (Standard) --- */
+        .hero-section {
+            background: linear-gradient(135deg, rgba(44, 46, 86, 0.95), rgba(44, 46, 86, 0.8)),
+                url('https://picsum.photos/seed/factory/1920/1080.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            color: #fff;
+            /* Always white text for hero */
+            position: relative;
+        }
+
+        /* --- Hero Section (Split - For Home 2) --- */
+        .hero-split {
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            background-color: var(--bg-card);
+            overflow: hidden;
+        }
+
+        .hero-split-text {
+            background-color: var(--primary-color);
+            color: white;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 50px;
+        }
+
+        .hero-split-img {
+            background-image: url('https://picsum.photos/seed/engineer/1920/1080.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100%;
+            width: 100%;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        /* --- Parallax Section --- */
+        .parallax-section {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://picsum.photos/seed/lights/1920/800.jpg');
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: #fff;
+            padding: 100px 0;
+        }
+
+        /* --- Buttons --- */
+        .btn-luxury {
+            background-color: var(--accent-color);
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 2px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-luxury:hover {
+            background-color: #bfa13f;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline-luxury {
+            border: 2px solid #fff;
+            color: #fff;
+            padding: 10px 30px;
+            border-radius: 2px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-left: 10px;
+        }
+
+        [dir="rtl"] .btn-outline-luxury {
+            margin-left: 0;
+            margin-right: 10px;
+        }
+
+        .btn-outline-luxury:hover {
+            background-color: #fff;
+            color: var(--primary-color);
+        }
+
+        /* --- General Section Styling --- */
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .bg-light-luxury {
+            background-color: var(--bg-secondary);
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            display: block;
+        }
+
+        .section-heading {
+            font-size: 2.2rem;
+            color: var(--text-body);
+            margin-bottom: 50px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        /* .section-heading::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-color);
+        } */
+
+        [dir="ltr"] .section-heading::after {
+            left: 0;
+        }
+
+        [dir="rtl"] .section-heading::after {
+            right: 0;
+        }
+
+        /* --- Cards & Services --- */
+        .luxury-card {
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 4px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+            height: 100%;
+        }
+
+        [data-theme="dark"] .luxury-card {
+            box-shadow: none;
+            /* Remove shadow in dark mode for flat look */
+        }
+
+        .luxury-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-color);
+        }
+
+        .icon-box {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        /* --- Home 2 Workflow Steps --- */
+        .step-item {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background-color: var(--accent-color);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+
+        /* Connecting line for desktop */
+        @media (min-width: 768px) {
+            .step-item:not(:last-child)::after {
+                content: '';
+                position: absolute;
+                top: 25px;
+                right: -50%;
+                width: 100%;
+                height: 2px;
+                background-color: var(--border-color);
+                z-index: -1;
+            }
+
+            [dir="rtl"] .step-item:not(:last-child)::after {
+                right: auto;
+                left: -50%;
+            }
+        }
+
+        /* --- Home 2 Specific Styles --- */
+        .feature-list-item {
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .feature-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: rgba(44, 46, 86, 0.1);
+            margin-right: 20px;
+            line-height: 1;
+        }
+
+        [data-theme="dark"] .feature-number {
+            color: rgba(255, 255, 255, 0.05);
+        }
+
+        [dir="rtl"] .feature-number {
+            margin-right: 0;
+            margin-left: 20px;
+        }
+
+        /* --- Utility: Page Visibility --- */
+        .page-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- Carousel Customization --- */
+        .carousel-indicators [data-bs-target] {
+            background-color: var(--primary-color);
+        }
+
+        .testimonial-card {
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 4px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        [data-theme="dark"] .testimonial-card {
+            box-shadow: none;
+        }
+
+        .quote-icon {
+            font-size: 3rem;
+            color: var(--accent-color);
+            opacity: 0.3;
+            margin-bottom: 20px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 60px 0 20px;
+        }
+
+        footer h5 {
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        footer a {
+            color: #ccc;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        footer a:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- Map --- */
+        .map-container iframe {
+            width: 100%;
+            height: 400px;
+            border: 0;
+            filter: grayscale(20%) contrast(1.1);
+        }
+
+        /* RTL Specific Adjustments for Bootstrap */
+        [dir="rtl"] .text-start {
+            text-align: right !important;
+        }
+
+        [dir="rtl"] .text-end {
+            text-align: left !important;
+        }
+
+        .form-control {
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 0;
+            background-color: var(--bg-input);
+            color: var(--text-body);
+        }
+
+        .form-control:focus {
+            box-shadow: none;
+            border-color: var(--primary-color);
+            background-color: var(--bg-input);
+        }
+
+        .text-muted {
+            color: var(--text-muted) !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#" onclick="switchPage('home')">
+                <!-- <i class="bi bi-layers-fill text-primary me-2"></i> -->
+                <img src="images/b2b_logo.png" width="100px" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon" style="color: white;"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="nav-links">
+
+                    <!-- Dropdown Option for Home -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Home
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" onclick="switchPage('home')" data-page="home">Home
+                                    Style 1</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="switchPage('home2')" data-page="home2">Home
+                                    Style 2</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="switchPage('about')"
+                            data-page="about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="switchPage('services')"
+                            data-page="services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="switchPage('blog')"
+                            data-page="blog">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="switchPage('pricing')"
+                            data-page="pricing">Pricing</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="switchPage('contact')"
+                            data-page="contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="dashboard.html" data-page="contact">Dashboard</a>
+                    </li>
+                </ul>
+
+                <div class="nav-controls ms-3">
+                    <!-- Dark Mode Toggle -->
+                    <button class="btn btn-control" onclick="toggleTheme()" title="Toggle Theme">
+                        <i class="bi bi-moon" id="theme-icon"></i>
+                    </button>
+
+                    <!-- RTL Toggle -->
+                    <button class="btn btn-control" onclick="toggleRTL()" title="Switch Language Direction">
+                        <i class="bi bi-globe"></i> <span id="rtl-text">RTL</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main style="margin-top: 76px;" class="overflow-hidden">
+
+        <!-- ================= HOME PAGE 1 ================= -->
+        <div id="home" class="page-content active">
+            <!-- Section 1: Hero -->
+            <section class="hero-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h1 class="hero-title">Engineering Excellence for Global Industries</h1>
+                            <p class="lead mb-4 opacity-75">Premium industrial supplies, machinery components, and
+                                logistical solutions tailored for enterprise-grade operations.</p>
+                            <a href="#" onclick="switchPage('contact')" class="btn btn-luxury">Request Quote</a>
+                            <a href="#" onclick="switchPage('services')" class="btn btn-outline-luxury">Explore
+                                Services</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: Featured Categories -->
+            <section class="section-padding">
+                <div class="container">
+                    <span class="section-title">Our Expertise</span>
+                    <h2 class="section-heading">Premium Product Categories</h2>
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="luxury-card text-center">
+                                <img src="images/Advanced analytics & automation.jpg" width="350px" height="300px"
+                                    class="mb-3 rounded" alt="Heavy Machinery">
+                                <h4>Advanced analytics & automation</h4>
+                                <p class="text-muted">Built for complex enterprise environments, they integrate
+                                    seamlessly across data sources and systems while ensuring governance, security, and
+                                    reliability.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="luxury-card text-center">
+                                <!-- <img src="images/Precision Tools.jpg" width="315" height="100" class="img-fluid mb-3 rounded"
+                                    alt="Precision Tools"> -->
+                                <img src="images/Enterprise securitycompliance.jpg" width="350px" height="300px" alt=""
+                                    class="mb-3">
+                                <h4>Enterprise security/compliance</h4>
+                                <p class="text-muted">Enterprise Security & Compliance solutions protect critical
+                                    business systems, data, and operations while ensuring adherence to global regulatory
+                                    standards.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="luxury-card text-center">
+                                <img src="images/Industrial robots (KUKA, FANUC).jpg" width="350px" height="300px"
+                                    class="mb-3 rounded" alt="Safety Gear">
+                                <h4>Industrial robots (KUKA, FANUC)</h4>
+                                <p class="text-muted">Industrial robots are high-precision, programmable automation
+                                    systems designed to perform repetitive, complex, and hazardous tasks with consistent
+                                    accuracy and reliability.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Technology Spotlight -->
+            <section class="section-padding" style="background-color: #1a1c33; color: #fff;">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 mb-4 mb-lg-0">
+                            <img src="https://picsum.photos/seed/robotarm/600/500" class="img-fluid rounded shadow"
+                                alt="Technology">
+                        </div>
+                        <div class="col-lg-6 ps-lg-5">
+                            <span
+                                style="color: var(--accent-color); font-weight: 700; text-transform: uppercase;">Innovation
+                                Lab</span>
+                            <h2 class="display-5 fw-bold mb-4">Future-Ready Industrial Automation</h2>
+                            <p class="lead mb-4 opacity-75">Future-ready industrial automation enables manufacturers to
+                                adapt, scale, and optimize operations in an increasingly digital, connected, and
+                                data-driven environment. These solutions combine intelligent robotics, advanced
+                                controls, real-time data, and software-defined automation.</p>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><i class="bi bi-check-circle-fill text-warning me-2"></i>Manufacturing
+                                    & Automation</li>
+                                <li class="mb-2"><i class="bi bi-check-circle-fill text-warning me-2"></i> Automotive &
+                                    Heavy Equipment</li>
+                                <li class="mb-2"><i class="bi bi-check-circle-fill text-warning me-2"></i>Electronics &
+                                    Semiconductors</li>
+                            </ul>
+                            <a href="#" class="btn btn-outline-light mt-3">Explore Technology</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: Why Choose Us -->
+            <section class="section-padding">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6">
+                            <span class="section-title">Why Apex</span>
+                            <h2 class="section-heading mb-4">Setting the Standard in B2B Supply</h2>
+                            <p class="text-muted">We deliver reliable, compliant, and future-ready industrial supply
+                                solutions that help
+                                businesses operate with confidence. Through verified sourcing, technical expertise, and
+                                dependable fulfillment, we support complex procurement needs across industries and
+                                global markets.</p>
+                            <div class="d-flex mb-3">
+                                <i class="bi bi-check-circle-fill text-primary me-3 fs-4"></i>
+                                <div>
+                                    <h5>Quality Assurance</h5>
+                                    <p class="text-muted">ISO certified materials sourced from top-tier manufacturers.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="d-flex mb-3">
+                                <i class="bi bi-check-circle-fill text-primary me-3 fs-4"></i>
+                                <div>
+                                    <h5>Global Logistics</h5>
+                                    <p class="text-muted">Seamless shipping to over 50 countries with real-time
+                                        tracking.</p>
+                                </div>
+                            </div>
+                            <div class="d-flex mb-3">
+                                <i class="bi bi-check-circle-fill text-primary me-3 fs-4"></i>
+                                <div>
+                                    <h5>Cost Efficiency</h5>
+                                    <p class="text-muted">Bulk pricing tiers designed to scale with your production.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <img src="images/heavy_mechinery.jpg" height="200px" class="img-fluid rounded shadow"
+                                alt="Warehouse" style="height: 600px; width: 100%;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: Testimonials -->
+            <section class="section-padding bg-light-luxury">
+                <div class="container">
+                    <div class="text-center mb-5">
+                        <span class="section-title">Testimonials</span>
+                        <h2 class="section-heading">What Our Clients Say</h2>
+                    </div>
+                    <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="testimonial-card mx-auto" style="max-width: 800px;">
+                                    <i class="bi bi-quote quote-icon"></i>
+                                    <p class="fs-5 fst-italic text-muted">"Apex Industrial transformed our procurement
+                                        process. Their logistics team ensured we never faced downtime, even during peak
+                                        season."</p>
+                                    <div class="mt-4">
+                                        <strong>Robert V.</strong>
+                                        <p class="text-muted mb-0">COO, Alpha Construction</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="testimonial-card mx-auto" style="max-width: 800px;">
+                                    <i class="bi bi-quote quote-icon"></i>
+                                    <p class="fs-5 fst-italic text-muted">"The quality of the precision tools is
+                                        unmatched. We have reduced our error rate by 15% since switching to Apex."</p>
+                                    <div class="mt-4">
+                                        <strong>Sarah L.</strong>
+                                        <p class="text-muted mb-0">Director of Quality, TechMach</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: Stats -->
+            <section class="section-padding" style="background-color: var(--primary-color); color: #fff;">
+                <div class="container">
+                    <div class="row text-center">
+                        <div class="col-md-3 mb-4">
+                            <h2 class="fw-bold display-4">25+</h2>
+                            <p>Years Experience</p>
+                        </div>
+                        <div class="col-md-3 mb-4">
+                            <h2 class="fw-bold display-4">10k+</h2>
+                            <p>Products Delivered</p>
+                        </div>
+                        <div class="col-md-3 mb-4">
+                            <h2 class="fw-bold display-4">500+</h2>
+                            <p>Enterprise Clients</p>
+                        </div>
+                        <div class="col-md-3 mb-4">
+                            <h2 class="fw-bold display-4">24/7</h2>
+                            <p>Support Available</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 7: Quick Capabilities Grid -->
+            <section class="section-padding">
+                <div class="container">
+                    <div class="text-center mb-5">
+                        <span class="section-title">Core Strengths</span>
+                        <h2 class="section-heading">Our Operational Reach</h2>
+                    </div>
+                    <div class="row g-4">
+                        <div class="col-md-3 text-center">
+                            <i class="bi bi-globe-americas icon-box"></i>
+                            <h5>Global Sourcing</h5>
+                            <p class="small text-muted">Direct access to factories in 12 countries.</p>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <i class="bi bi-shield-lock icon-box"></i>
+                            <h5>Secure Supply</h5>
+                            <p class="small text-muted">Insured cargo and secure warehousing.</p>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <i class="bi bi-clock-history icon-box"></i>
+                            <h5>Rapid Dispatch</h5>
+                            <p class="small text-muted">Same-day shipping for in-stock items.</p>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <i class="bi bi-graph-up-arrow icon-box"></i>
+                            <h5>Scalable Volume</h5>
+                            <p class="small text-muted">Handling orders from 1 unit to 10,000 units.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 8: Partners -->
+            <section class="section-padding bg-light-luxury">
+                <div class="container text-center">
+                    <span class="section-title">Trusted By</span>
+                    <h2 class="section-heading">Industry Leaders</h2>
+                    <div class="row justify-content-center align-items-center g-5 opacity-50 grayscale">
+                        <div class="col-6 col-md-2">
+                            <h4 class="fw-bold">CORP X</h4>
+                        </div>
+                        <div class="col-6 col-md-2">
+                            <h4 class="fw-bold">BUILDO</h4>
+                        </div>
+                        <div class="col-6 col-md-2">
+                            <h4 class="fw-bold">TECHNO</h4>
+                        </div>
+                        <div class="col-6 col-md-2">
+                            <h4 class="fw-bold">MECH</h4>
+                        </div>
+                        <div class="col-6 col-md-2">
+                            <h4 class="fw-bold">AUTO</h4>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 9: CTA -->
+            <section class="section-padding text-center">
+                <div class="container">
+                    <h2 class="mb-3 text-primary">Ready to Upgrade Your Supply Chain?</h2>
+                    <p class="mb-4 text-muted w-75 mx-auto">Join hundreds of satisfied industrial partners who trust
+                        Apex for their critical supply needs.</p>
+                    <button class="btn btn-luxury" onclick="switchPage('contact')">Get Started Today</button>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= HOME PAGE 2 ================= -->
+        <div id="home2" class="page-content">
+            <!-- Section 1: Split Hero -->
+            <section class="hero-split">
+                <div class="col-lg-6 p-0 hero-split-text order-lg-1 order-2">
+                    <div class="container ps-lg-5">
+                        <h1 class="display-3 fw-bold mb-3">Precision.<br>Power.<br>Performance.</h1>
+                        <p class="lead mb-4 opacity-75">The next generation of industrial components. Designed for the
+                            demands of modern engineering.</p>
+                        <a href="#" onclick="switchPage('about')" class="btn btn-luxury">Discover More</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 p-0 hero-split-img order-lg-2 order-1"></div>
+            </section>
+
+            <!-- Section 2: Feature List -->
+            <section class="section-padding">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 mb-5 mb-lg-0">
+                            <img src="https://picsum.photos/seed/factory2/600/500" class="img-fluid rounded shadow"
+                                alt="Features">
+                        </div>
+                        <div class="col-lg-6 ps-lg-5">
+                            <span class="section-title">Core Features</span>
+                            <h2 class="section-heading">Why Industry Leaders Choose Us</h2>
+
+                            <div class="feature-list-item">
+                                <div class="feature-number">01</div>
+                                <div>
+                                    <h5>Advanced Material Science</h5>
+                                    <p class="text-muted m-0">Utilizing aerospace-grade alloys for durability.</p>
+                                </div>
+                            </div>
+                            <div class="feature-list-item">
+                                <div class="feature-number">02</div>
+                                <div>
+                                    <h5>Integrated Supply Chain</h5>
+                                    <p class="text-muted m-0">From raw material procurement to final delivery.</p>
+                                </div>
+                            </div>
+                            <div class="feature-list-item">
+                                <div class="feature-number">03</div>
+                                <div>
+                                    <h5>Sustainability Focus</h5>
+                                    <p class="text-muted m-0">Green manufacturing processes and recyclable packaging.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Grid Showcase -->
+            <section class="section-padding bg-light-luxury">
+                <div class="container">
+                    <div class="text-center mb-5">
+                        <span class="section-title">Our Portfolio</span>
+                        <h2 class="section-heading">Recent Projects</h2>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-md-6 col-lg-4">
+                            <div class="position-relative overflow-hidden group">
+                                <img src="https://picsum.photos/seed/proj1/600/400" class="img-fluid w-100"
+                                    alt="Project">
+                                <div class="position-absolute bottom-0 start-0 bg-dark text-white p-3 w-100 m-3 rounded"
+                                    style="opacity:0.9">
+                                    <h5 class="m-0">Oil Rig Components</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="position-relative overflow-hidden group">
+                                <img src="https://picsum.photos/seed/proj2/600/400" class="img-fluid w-100"
+                                    alt="Project">
+                                <div class="position-absolute bottom-0 start-0 bg-dark text-white p-3 w-100 m-3 rounded"
+                                    style="opacity:0.9">
+                                    <h5 class="m-0">Auto Assembly Line</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="position-relative overflow-hidden group">
+                                <img src="https://picsum.photos/seed/proj3/600/400" class="img-fluid w-100"
+                                    alt="Project">
+                                <div class="position-absolute bottom-0 start-0 bg-dark text-white p-3 w-100 m-3 rounded"
+                                    style="opacity:0.9">
+                                    <h5 class="m-0">Solar Infrastructure</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: Stats (Horizontal Bar) -->
+            <section class="section-padding">
+                <div class="container">
+                    <div class="row text-center align-items-center g-4">
+                        <div class="col-md-3 border-end">
+                            <h3 class="fw-bold text-primary">ISO 9001</h3>
+                            <small class="text-muted">Certified</small>
+                        </div>
+                        <div class="col-md-3 border-end">
+                            <h3 class="fw-bold text-primary">100%</h3>
+                            <small class="text-muted">On-Time Delivery</small>
+                        </div>
+                        <div class="col-md-3 border-end">
+                            <h3 class="fw-bold text-primary">50+</h3>
+                            <small class="text-muted">Countries Served</small>
+                        </div>
+                        <div class="col-md-3">
+                            <h3 class="fw-bold text-primary">5 Star</h3>
+                            <small class="text-muted">Client Rating</small>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: Testimonials (Dark) -->
+            <section class="section-padding" style="background-color: #1a1a1a; color: #fff;">
+                <div class="container text-center">
+                    <i class="bi bi-quote fs-1 text-warning mb-3"></i>
+                    <h3 class="display-5 fw-light fst-italic mb-4">"The most reliable supplier we have worked with in
+                        last decade. Apex sets the bar."</h3>
+                    <div>
+                        <strong>James Carter</strong>
+                        <p class="mb-0 text-white-50">CEO, Global Tech Industries</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: Workflow Timeline -->
+            <section class="section-padding bg-light-luxury">
+                <div class="container">
+                    <div class="text-center mb-5">
+                        <span class="section-title">How It Works</span>
+                        <h2 class="section-heading">Our Workflow</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 step-item mb-4">
+                            <div class="step-number">1</div>
+                            <h5>Consultation</h5>
+                            <p class="text-muted small">We analyze your technical requirements.</p>
+                        </div>
+                        <div class="col-md-3 step-item mb-4">
+                            <div class="step-number">2</div>
+                            <h5>Sourcing</h5>
+                            <p class="text-muted small">We procure premium materials.</p>
+                        </div>
+                        <div class="col-md-3 step-item mb-4">
+                            <div class="step-number">3</div>
+                            <h5>Production</h5>
+                            <p class="text-muted small">Precision manufacturing begins.</p>
+                        </div>
+                        <div class="col-md-3 step-item mb-4">
+                            <div class="step-number">4</div>
+                            <h5>Delivery</h5>
+                            <p class="text-muted small">Global logistics to your doorstep.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 7: Parallax CTA -->
+            <section class="parallax-section text-center">
+                <div class="container">
+                    <h2 class="display-4 fw-bold mb-4">Innovation Never Sleeps</h2>
+                    <p class="lead mb-4 w-75 mx-auto opacity-75">Join our R&D partnership program to access next-gen
+                        components before they hit the mass market.</p>
+                    <a href="#" class="btn btn-luxury btn-lg">Join R&D Network</a>
+                </div>
+            </section>
+
+            <!-- Section 8: Newsletter -->
+            <section class="section-padding bg-light-luxury text-center">
+                <div class="container">
+                    <h2 class="text-primary mb-4">Stay Updated</h2>
+                    <p class="text-muted mb-4">Subscribe to our engineering journal for the latest trends.</p>
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <input type="text" class="form-control border-primary" placeholder="Your Email">
+                                <button class="btn btn-luxury">Subscribe</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= ABOUT PAGE (EXPANDED) ================= -->
+        <div id="about" class="page-content">
+            <!-- 1. Hero -->
+            <section class="hero-section">
+                <div class="container">
+                    <h1 class="hero-title">Our Legacy & Vision</h1>
+                    <p class="lead">Building the infrastructure of tomorrow with integrity and precision.</p>
+                </div>
+            </section>
+
+            <!-- 2. History -->
+            <section class="section-padding">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 order-lg-2">
+                            <img src="https://picsum.photos/seed/history/600/400" class="img-fluid rounded shadow"
+                                alt="History">
+                        </div>
+                        <div class="col-lg-6 order-lg-1">
+                            <span class="section-title">Since 1998</span>
+                            <h2 class="section-heading">A History of Innovation</h2>
+                            <p>A History of Innovation reflects our commitment to progress, creativity, and continuous
+                                improvement. From our early beginnings to today, we have embraced new ideas,
+                                technologies, and methods to deliver smarter solutions and lasting value. Each milestone
+                                represents our drive to evolve with changing industry demands while staying true to our
+                                core values. Our journey is defined by innovation. What started as a simple idea has
+                                grown into a story of bold thinking, breakthrough solutions, and constant reinvention. A
+                                History of Innovation showcases how curiosity, technology, and passion have shaped who
+                                we are today—and where we’re headed next.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. Mission & Vision -->
+            <section class="section-padding bg-light-luxury">
+                <div class="container">
+                    <div class="row text-center">
+                        <div class="col-md-6">
+                            <div class="p-5 shadow-sm h-100 luxury-card">
+                                <i class="bi bi-bullseye icon-box"></i>
+                                <h3>Our Mission</h3>
+                                <p class="text-muted">To provide the highest quality industrial products and supply
+                                    chain solutions that empower our clients to build a better world.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-5 shadow-sm h-100 luxury-card">
+                                <i class="bi bi-eye icon-box"></i>
+                                <h3>Our Vision</h3>
+                                <p class="text-muted">To be the world's most trusted partner in industrial supply, known
+                                    for innovation, sustainability, and operational excellence.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- NEW 4. Core Values -->
+            <section class="section-padding">
+                <div class="container">
+                    <div class="text-center mb-5">
+                        <span class="section-title">What We Stand For</span>
+                        <h2 class="section-heading">Core Values</h2>
+                    </div>
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="luxury-card text-center h-100">
+                                <i class="bi bi-shield-check icon-box"></i>
+                                <h4>Integrity</h4>
+                                <p class="text-muted small">We conduct business with transparency and honesty, building
+                                    trust through every interaction.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="luxury-card text-center h-100">
+                                <i class="bi bi-lightbulb icon-box"></i>
+                                <h4>Innovation</h4>
+                                <p class="text-muted small">We constantly seek new technologies and methods to improve
+                                    efficiency and performance.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="luxury-card text-center h-100">
+                                <i class="bi bi-people icon-box"></i>
+                                <h4>Collaboration</h4>
+                                <p class="text-muted small">We believe in working together—internally and with
+                                    partners—to achieve mutual success.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. Team -->
+            <section class="section-padding bg-light-luxury">
+                <div class="container">
+                    <span class="section-title">Leadership</span>
+                    <h2 class="section-heading">Meet The Executives</h2>
+                    <div class="row g-4">
+                        <div class="col-md-4 text-center">
+                            <img src="https://picsum.photos/seed/ceo/200/200" class="rounded-circle mb-3 shadow"
+                                alt="CEO">
+                            <h5>Jonathan Sterling</h5>
+                            <p class="text-muted">Chief Executive Officer</p>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <img src="https://picsum.photos/seed/cto/200/200" class="rounded-circle mb-3 shadow"
+                                alt="CTO">
+                            <h5>Sarah Jenkins</h5>
+                            <p class="text-muted">Chief Operations Officer</p>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <img src="https://picsum.photos/seed/cfo/200/200" class="rounded-circle mb-3 shadow"
+                                alt="CFO">
+                            <h5>David Chen</h5>
+                            <p class="text-muted">Head of Logistics</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- NEW 6. Our Approach -->
+            <section class="section-padding">
+                <div class="container">
+                    <div class="text-center mb-5">
+                        <span class="section-title">How We Work</span>
+                        <h2 class="section-heading">Our Strategic Approach</h2>
+                    </div>
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="luxury-card">
+                                <h4 class=" mb-3">01. Analysis</h4>
+                                <p class="text-muted">We begin by thoroughly analyzing your supply chain needs,
+                                    identifying bottlenecks, and forecasting future requirements.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="luxury-card">
+                                <h4 class=" mb-3">02. Strategy</h4>
+                                <p class="text-muted">We develop a tailored procurement and logistics strategy designed
+                                    to reduce costs and improve reliability.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="luxury-card">
+                                <h4 class="mb-3">03. Execution</h4>
+                                <p class="text-muted">We implement the plan with precision, utilizing our global network
+                                    to deliver exactly what you need, when you need it.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- NEW 7. Sustainability (Parallax) -->
+            <section class="parallax-section">
+                <div class="container text-center">
+                    <i class="bi bi-tree-fill display-4 mb-3 text-white"></i>
+                    <h2 class="mb-4">Commitment to Sustainability</h2>
+                    <p class="lead w-75 mx-auto mb-4">Apex Industrial is dedicated to reducing the environmental
+                        footprint of the manufacturing sector. We promote green logistics, recyclable packaging, and
+                        energy-efficient operations.</p>
+                    <a href="#" class="btn btn-outline-light">Read Our Impact Report</a>
+                </div>
+            </section>
+
+            <!-- 8. Certifications -->
+            <section class="section-padding bg-light-luxury text-center">
+                <div class="container">
+                    <h2 class="mb-4">Certified Excellence</h2>
+                    <div class="display-4 text-muted mb-4">
+                        <i class="bi bi-award-fill mx-2"></i>
+                        <i class="bi bi-shield-check-fill mx-2"></i>
+                        <i class="bi bi-patch-check-fill mx-2"></i>
+                    </div>
+                    <p class="text-muted w-50 mx-auto">We maintain strict adherence to ISO 9001, ISO 14001, and OHSAS
+                        18001 standards to ensure quality, safety, and environmental management.</p>
+                </div>
+            </section>
+
+            <!-- 9. About CTA -->
+            <section class="section-padding text-center">
+                <div class="container">
+                    <h2>Join Our Team</h2>
+                    <p>We are always looking for talented individuals to help us shape the future of industrial supply.
+                    </p>
+                    <a href="#" class="btn btn-luxury mt-3">View Careers</a>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= SERVICES PAGE ================= -->
+        <div id="services" class="page-content">
+            <!-- 1. Hero -->
+            <section class="hero-section">
+                <div class="container">
+                    <h1 class="hero-title">Comprehensive Solutions</h1>
+                    <p class="lead">End-to-end services designed to optimize your workflow.</p>
+                </div>
+            </section>
+            <!-- 2. Service Overview -->
+            <section class="section-padding">
+                <div class="container">
+                    <h2 class="section-heading text-center">What We Offer</h2>
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="luxury-card"><i class="bi bi-gear-fill icon-box"></i>
+                                <h4>Supply Chain Mgmt</h4>
+                                <p>Optimized inventory management.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="luxury-card"><i class="bi bi-truck icon-box"></i>
+                                <h4>Global Logistics</h4>
+                                <p>Freight forwarding and customs.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="luxury-card"><i class="bi bi-tools icon-box"></i>
+                                <h4>Custom Fabrication</h4>
+                                <p>CAD/CAM custom-made parts.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- 3. Logistics -->
+            <section class="section-padding bg-light-luxury">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6"><img src="images/Advanced Logistics Network.jpg"
+                                class="img-fluid rounded shadow" alt="Logistics" style="width: 100%; height: 500px;">
+                        </div>
+                        <div class="col-lg-6">
+                            <h2 class="mb-3">Advanced Logistics Network</h2>
+                            <p>An advanced logistics network enables fast, reliable, and compliant movement of
+                                industrial goods across regional and global supply chains. Built on integrated
+                                warehousing, transportation, and digital visibility, it ensures consistent delivery
+                                performance while reducing lead times, risk, and operational complexity.
+
+                                Designed for B2B environments, advanced logistics networks support high-volume,
+                                time-critical, and regulated shipments with end-to-end coordination and control. We
+                                deliver reliable, compliant, and future-ready industrial supply solutions that help
+                                businesses operate with confidence. Through verified sourcing, technical expertise, and
+                                dependable fulfillment, we support complex procurement needs across industries and
+                                global markets.</p>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><i class="bi bi-check-circle-fill text-warning me-2"></i>Regional and
+                                    global distribution centers</li>
+                                <li class="mb-2"><i
+                                        class="bi bi-check-circle-fill text-warning me-2"></i>Climate-controlled and
+                                    regulated storage</li>
+                                <li class="mb-2"><i class="bi bi-check-circle-fill text-warning me-2"></i>High-accuracy
+                                    picking and packing</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+            <!-- 4. Maintenance -->
+            <section class="section-padding">
+                <div class="container text-center"><span class="section-title">After Sales</span>
+                    <h2 class="section-heading">Maintenance & Support</h2>
+                    <div class="row g-4">
+                        <div class="col-md-3"><i class="bi bi-wrench-adjustable-circle display-4 text-primary mb-3"></i>
+                            <h5>Installation</h5>
+                        </div>
+                        <div class="col-md-3"><i class="bi bi-calendar-check display-4 text-primary mb-3"></i>
+                            <h5>Routine Checks</h5>
+                        </div>
+                        <div class="col-md-3"><i class="bi bi-lightning-charge display-4 text-primary mb-3"></i>
+                            <h5>Emergency Repair</h5>
+                        </div>
+                        <div class="col-md-3"><i class="bi bi-arrow-repeat display-4 text-primary mb-3"></i>
+                            <h5>Part Replacement</h5>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. Quote CTA -->
+            <section class="section-padding text-center">
+                <div class="container">
+                    <h2>Need a Custom Solution?</h2><button class="btn btn-luxury"
+                        onclick="switchPage('contact')">Request a Quote</button>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= BLOG PAGE ================= -->
+        <div id="blog" class="page-content">
+            <!-- 1. Hero -->
+            <section class="hero-section">
+                <div class="container">
+                    <h1 class="hero-title">Industry Insights</h1>
+                    <p class="lead">News, trends, and analysis from the industrial sector.</p>
+                </div>
+            </section>
+            <!-- 2. Featured -->
+            <section class="section-padding">
+                <div class="container">
+                    <div class="card border-0 shadow-lg overflow-hidden">
+                        <div class="row g-0">
+                            <div class="col-md-6"><img src="https://picsum.photos/seed/techblog/800/600"
+                                    class="img-fluid h-100 object-fit-cover" alt="Featured"></div>
+                            <div class="col-md-6">
+                                <div class="card-body p-5"><span class="badge bg-primary mb-2">Featured</span>
+                                    <h2 class="card-title mb-3">The Future of Automation</h2>
+                                    <p class="card-text">The future of automation is intelligent, connected,
+                                        and adaptable. It moves beyond fixed, task-based systems to integrated
+                                        automation ecosystems that combine robotics, software, data, and analytics to
+                                        drive continuous improvement and operational resilience.
+
+                                        Built for evolving industrial demands, future automation enables organizations
+                                        to respond faster to change, optimize performance in real time, and scale
+                                        efficiently while maintaining safety, quality, and compliance.</p><a href="#"
+                                        class="btn btn-outline-dark mb-3">Read Article</a>
+                                    <ul class="list-unstyled">
+                                        <li class="mb-2"><i
+                                                class="bi bi-check-circle-fill text-warning me-2"></i>Regional and
+                                            global distribution centers</li>
+                                        <li class="mb-2"><i
+                                                class="bi bi-check-circle-fill text-warning me-2"></i>Climate-controlled
+                                            and
+                                            regulated storage</li>
+                                        <li class="mb-2"><i
+                                                class="bi bi-check-circle-fill text-warning me-2"></i>High-accuracy
+                                            picking and packing</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </section>
+            <!-- 3. Grid -->
+            <section class="section-padding bg-light-luxury">
+                <div class="container">
+                    <h2 class="section-heading">Recent Articles</h2>
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="card h-100 border-0 shadow-sm luxury-card"><img
+                                    src="https://picsum.photos/seed/safetyblog/400/250" class="card-img-top" alt="Blog">
+                                <div class="card-body">
+                                    <h5 class="card-title" style="color: #bfa13f;">Safety Protocols 2024</h5><a href="#"
+                                        class="text-primary text-decoration-none">Read More &rarr;</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card h-100 border-0 shadow-sm luxury-card"><img
+                                    src="https://picsum.photos/seed/supplyblog/400/250" class="card-img-top" alt="Blog">
+                                <div class="card-body">
+                                    <h5 class="card-title" style="color: #bfa13f;">Supply Chain Resilience</h5><a
+                                        href="#" class="text-primary text-decoration-none">Read More &rarr;</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card h-100 border-0 shadow-sm luxury-card"><img
+                                    src="https://picsum.photos/seed/steelblog/400/250" class="card-img-top" alt="Blog">
+                                <div class="card-body">
+                                    <h5 class="card-title" style="color: #bfa13f;">Material Innovations</h5><a href="#"
+                                        class="text-primary text-decoration-none">Read More &rarr;</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- 4. Newsletter -->
+            <section class="section-padding text-center">
+                <div class="container"><i class="bi bi-envelope-paper display-4 text-primary mb-3"></i>
+                    <h2>Subscribe to our Newsletter</h2>
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <div class="input-group"><input type="email" class="form-control"
+                                    placeholder="Your Email Address"><button class="btn btn-luxury"
+                                    type="button">Subscribe</button></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. CTA -->
+            <section class="section-padding text-center">
+                <div class="container">
+                    <h2>Have something to add?</h2><a href="#" class="btn btn-outline-dark">Submit Guest Post</a>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= PRICING PAGE ================= -->
+        <div id="pricing" class="page-content">
+            <!-- 1. Hero -->
+            <section class="hero-section">
+                <div class="container">
+                    <h1 class="hero-title">Flexible Plans</h1>
+                    <p class="lead">Transparent pricing for catalog access and enterprise services.</p>
+                </div>
+            </section>
+            <!-- 2. Intro -->
+            <section class="section-padding text-center">
+                <div class="container">
+                    <p class="lead text-muted w-75 mx-auto">Choose the plan that fits your business scale.</p>
+                </div>
+            </section>
+            <!-- 3. Standard Plans -->
+            <section class="section-padding">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-4 mb-4">
+                            <div class="luxury-card text-center">
+                                <h4 class="text-muted">Standard</h4>
+                                <h2 class="display-4 my-3">$0</h2>
+                                <p class="text-muted mb-4">For small businesses</p>
+                                <ul class="list-unstyled text-start mb-4 mx-auto">
+                                    <li class="mb-2"><i class="bi bi-check text-primary me-2"></i> Catalog Access</li>
+                                    <li class="mb-2"><i class="bi bi-check text-primary me-2"></i> Standard Shipping
+                                    </li>
+                                </ul><a href="#" class="btn btn-outline-dark w-100">Sign Up</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="luxury-card text-center border-primary"
+                                style="border: 2px solid var(--primary-color) !important; transform: scale(1.05);"><span
+                                    class="badge bg-primary position-absolute top-0 start-50 translate-middle">POPULAR</span>
+                                <h4 class="text-primary mt-2">Professional</h4>
+                                <h2 class="display-4 my-3">$49<span class="fs-6 text-muted">/mo</span></h2>
+                                <p class="text-muted mb-4">For growing teams</p>
+                                <ul class="list-unstyled text-start mb-4 mx-auto">
+                                    <li class="mb-2"><i class="bi bi-check text-primary me-2"></i> Everything in
+                                        Standard</li>
+                                    <li class="mb-2"><i class="bi bi-check text-primary me-2"></i> Priority Support</li>
+                                </ul><a href="#" class="btn btn-luxury w-100">Get Started</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="luxury-card text-center">
+                                <h4 class="text-muted">Enterprise</h4>
+                                <h2 class="display-4 my-3">Custom</h2>
+                                <p class="text-muted mb-4">For large organizations</p>
+                                <ul class="list-unstyled text-start mb-4 mx-auto">
+                                    <li class="mb-2"><i class="bi bi-check text-primary me-2"></i> Dedicated Account
+                                        Manager</li>
+                                    <li class="mb-2"><i class="bi bi-check text-primary me-2"></i> Custom Manufacturing
+                                    </li>
+                                </ul><a href="#" onclick="switchPage('contact')"
+                                    class="btn btn-outline-dark w-100">Contact Sales</a>
+                            </div>
+                        </div>
+                    </div>
+            </section>
+
+            <!-- 5. Testimonial -->
+            <section class="section-padding">
+                <div class="container text-center"><i class="bi bi-quote display-4 text-primary opacity-25"></i>
+                    <p class="fst-italic w-75 mx-auto my-3">"The Professional plan saved us thousands on logistics costs
+                        alone."</p>
+                </div>
+            </section>
+            <!-- 6. CTA -->
+            <section class="section-padding bg-light-luxury text-center">
+                <div class="container">
+                    <h2>Not sure which plan is right for you?</h2><button class="btn btn-luxury mt-3"
+                        onclick="switchPage('contact')">Talk to an Expert</button>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= CONTACT PAGE (UPDATED) ================= -->
+        <div id="contact" class="page-content">
+            <!-- 1. Hero -->
+            <section class="hero-section">
+                <div class="container">
+                    <h1 class="hero-title">Get In Touch</h1>
+                    <p class="lead">We are here to help with your industrial needs.</p>
+                </div>
+            </section>
+
+            <!-- 2. Info -->
+            <section class="section-padding">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4 mb-4">
+                            <div class="luxury-card text-center h-100"><i class="bi bi-geo-alt-fill icon-box"></i>
+                                <h4>Headquarters</h4>
+                                <p class="text-muted">123 Industrial Blvd, Sector 4<br>Chicago, IL 60601, USA</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="luxury-card text-center h-100"><i class="bi bi-envelope-fill icon-box"></i>
+                                <h4>Email Us</h4>
+                                <p class="text-muted">sales@apexindustrial.com<br>support@apexindustrial.com</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="luxury-card text-center h-100"><i class="bi bi-telephone-fill icon-box"></i>
+                                <h4>Call Us</h4>
+                                <p class="text-muted">+1 (800) 555-0199<br>Mon-Fri, 9am - 5pm EST</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. Form -->
+            <section class="section-padding bg-light-luxury">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="luxury-card">
+                                <h2 class="mb-4 text-center">Send a Message</h2>
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3"><label class="form-label">First Name</label><input
+                                                type="text" class="form-control"></div>
+                                        <div class="col-md-6 mb-3"><label class="form-label">Last Name</label><input
+                                                type="text" class="form-control"></div>
+                                    </div>
+                                    <div class="mb-3"><label class="form-label">Email Address</label><input type="email"
+                                            class="form-control"></div>
+                                    <div class="mb-3"><label class="form-label">Subject</label><select
+                                            class="form-control">
+                                            <option>General Inquiry</option>
+                                            <option>Request Quote</option>
+                                        </select></div>
+                                    <div class="mb-3"><label class="form-label">Message</label><textarea
+                                            class="form-control" rows="5"></textarea></div><button type="submit"
+                                        class="btn btn-luxury w-100">Send Message</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. Map -->
+            <section class="section-padding p-0">
+                <div class="container-fluid map-container">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5922.052445954693!2d-87.6235118844997!3d41.87811397921937!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e2ca05867222d%3A0x6ed3a5b9c5e8c50!2sChicago%2C%20IL!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus"
+                        allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </section>
+
+            <!-- DELETED: Global Offices Section as requested -->
+
+            <!-- 5. Hours (Now Section 5) -->
+            <section class="section-padding bg-light-luxury text-center">
+                <div class="container">
+                    <h3>Customer Support Hours</h3>
+                    <div class="row mt-4">
+                        <div class="col-md-4">
+                            <h5>Sales</h5>
+                            <p class="text-muted">Mon-Fri: 8am - 8pm EST</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h5>Technical Support</h5>
+                            <p class="text-muted">24/7 Emergency Line</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h5>Logistics</h5>
+                            <p class="text-muted">Mon-Sat: 6am - 6pm EST</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- 6. Social (Now Section 6) -->
+            <section class="section-padding text-center">
+                <div class="container">
+                    <h2>Connect With Us</h2>
+                    <div class="mt-3"><a href="#" class="btn btn-dark rounded-circle me-2"><i
+                                class="bi bi-linkedin"></i></a><a href="#" class="btn btn-dark rounded-circle me-2"><i
+                                class="bi bi-twitter"></i></a><a href="#" class="btn btn-dark rounded-circle"><i
+                                class="bi bi-facebook"></i></a></div>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h4 class="mb-3"><img src="images/b2b_logo.png" width="100px" alt=""></h4>
+                    <p>Providing trusted industrial products, components, and solutions to
+                        enterprises worldwide. We combine verified sourcing, technical expertise, and reliable supply to
+                        help businesses operate efficiently and compliantly.</p>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" onclick="switchPage('home')">Home</a></li>
+                        <li><a href="#" onclick="switchPage('about')">About</a></li>
+                        <li><a href="#" onclick="switchPage('services')">Services</a></li>
+                        <li><a href="#" onclick="switchPage('contact')">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4">
+                    <h5>Legal</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="mb-2">Privacy Policy</a></li>
+                        <li><a href="#" class="mb-2">Terms of Service</a></li>
+                        <li><a href="#" class="mb-2">Cookie Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-4 mb-4">
+                    <h5>Newsletter</h5>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Enter email">
+                        <button class="btn btn-luxury" type="button">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-secondary">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0 text-white-50">&copy; 2026 B2B Industrial Supplier Catalog. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-0 text-white-50">Designed for Luxury.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // --- Theme Toggle Logic ---
+        function toggleTheme() {
+            const htmlTag = document.documentElement;
+            const themeIcon = document.getElementById('theme-icon');
+            const currentTheme = htmlTag.getAttribute('data-theme');
+
+            if (currentTheme === 'dark') {
+                htmlTag.setAttribute('data-theme', 'light');
+                themeIcon.classList.replace('bi-sun', 'bi-moon');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                htmlTag.setAttribute('data-theme', 'dark');
+                themeIcon.classList.replace('bi-moon', 'bi-sun');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Initialize Theme on Load
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            const themeIcon = document.getElementById('theme-icon');
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeIcon.classList.replace('bi-moon', 'bi-sun');
+            }
+        });
+
+        // Single Page Routing Logic
+        function switchPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page-content').forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // Show target page
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+
+            // Update Navbar Active State
+            // Clear active classes
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            document.querySelectorAll('.dropdown-item').forEach(item => item.classList.remove('active'));
+
+            // Find the specific link (nav-link or dropdown-item) for the page
+            const activeLink = document.querySelector(`.nav-link[data-page="${pageId}"]`);
+            const activeDropdownItem = document.querySelector(`.dropdown-item[data-page="${pageId}"]`);
+
+            if (activeLink) {
+                // Standard nav link (About, Services, etc.)
+                activeLink.classList.add('active');
+            } else if (activeDropdownItem) {
+                // Dropdown item (Home or Home 2)
+                activeDropdownItem.classList.add('active'); // Highlight the menu item (optional)
+
+                // Highlight the parent dropdown toggle (the "Home" button in the navbar)
+                const parentDropdown = activeDropdownItem.closest('.dropdown');
+                if (parentDropdown) {
+                    parentDropdown.querySelector('.nav-link').classList.add('active');
+                }
+            }
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+
+            // Close mobile menu if open
+            const navbarCollapse = document.getElementById('navbarNav');
+            if (navbarCollapse.classList.contains('show')) {
+                const bsCollapse = new bootstrap.Collapse(navbarCollapse, { toggle: true });
+            }
+        }
+
+        // RTL Toggle Logic
+        function toggleRTL() {
+            const htmlTag = document.documentElement;
+            const rtlText = document.getElementById('rtl-text');
+            const currentDir = htmlTag.getAttribute('dir');
+
+            if (currentDir === 'ltr') {
+                htmlTag.setAttribute('dir', 'rtl');
+                rtlText.textContent = 'AR';
+            } else {
+                htmlTag.setAttribute('dir', 'ltr');
+                rtlText.textContent = 'EN';
+            }
+        }
+    </script>
+</body>
+
+</html>
