@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industrial Supplier - Access Portal</title>
+    <!-- Importing Inter font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            /* --- LIGHT MODE VARIABLES (Default) --- */
+            --primary-color: #0f172a;
+            /* Dark Navy Text */
+            --secondary-color: #334155;
+            /* Slate */
+            --accent-color: #d4af37;
+            /* Safety Orange */
+            --accent-hover: #d4af37;
+
+            /* Backgrounds */
+            --bg-body: #f1f5f9;
+            --bg-card: #ffffff;
+            --bg-input: #f8fafc;
+
+            /* Text */
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --text-on-accent: #ffffff;
+
+            /* Borders & Shadows */
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.05);
+            --focus-ring: rgba(15, 23, 42, 0.1);
+
+            --success-color: #10b981;
+            --error-color: #d4af37;
+            --transition: all 0.3s ease;
+        }
+
+        /* --- DARK MODE VARIABLES --- */
+        body.dark-mode {
+            --primary-color: #f8fafc;
+            /* Light Text */
+            --secondary-color: #94a3b8;
+
+            /* Dark Industrial Theme (Gunmetal/Charcoal) */
+            --bg-body: #0f172a;
+            --bg-card: #1e293b;
+            --bg-input: #0f172a;
+
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+
+            --border-color: #334155;
+            --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.5);
+            --focus-ring: rgba(234, 88, 12, 0.2);
+            /* Orange focus ring in dark mode */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* --- Layout --- */
+        .container {
+            width: 100%;
+            max-width: 600px;
+            position: relative;
+        }
+
+        /* Main Form Section */
+        .form-section {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        /* --- Theme Toggle Button --- */
+        .theme-toggle {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-main);
+            font-size: 1.1rem;
+            transition: var(--transition);
+            z-index: 10;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--bg-input);
+            transform: rotate(15deg);
+        }
+
+        /* Top Logo */
+        .form-header-logo {
+            margin-bottom: 2.5rem;
+            text-align: center;
+        }
+
+        .header-logo-link {
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .header-logo-link:hover {
+            color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .header-logo-link i {
+            color: var(--accent-color);
+            font-size: 1.6rem;
+        }
+
+        /* Toggle Switch (Login vs Signup) */
+        .form-toggle {
+            display: flex;
+            margin-bottom: 3rem;
+            border-bottom: 2px solid var(--border-color);
+            transition: border-color 0.3s ease;
+        }
+
+        .toggle-btn {
+            flex: 1;
+            padding: 1rem;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .toggle-btn.active {
+            color: var(--primary-color);
+        }
+
+        .toggle-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+
+        /* Forms Styling */
+        .auth-form {
+            display: none;
+            flex-direction: column;
+            gap: 2rem;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .auth-form.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            position: relative;
+        }
+
+        .input-group label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 1.2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            font-size: 0.95rem;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background-color: var(--bg-input);
+            color: var(--text-main);
+            transition: var(--transition);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            /* Use primary text color for border in dark mode */
+            background-color: var(--bg-card);
+            box-shadow: 0 0 0 3px var(--focus-ring);
+        }
+
+        /* Fix for focus border in dark mode (force orange border in dark mode if desired) */
+        body.dark-mode .form-input:focus {
+            border-color: var(--accent-color);
+        }
+
+        .form-input.error {
+            border-color: var(--error-color);
+        }
+
+        .error-msg {
+            font-size: 0.75rem;
+            color: var(--error-color);
+            margin-top: 4px;
+            display: none;
+        }
+
+        /* B2B Specific Fields Grid */
+        .b2b-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        /* Actions */
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.875rem;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        .forgot-pass {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .forgot-pass:hover {
+            text-decoration: underline;
+        }
+
+        /* Submit Button */
+        .btn-submit {
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--accent-color);
+            color: var(--text-on-accent);
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            display: none;
+            width: 1.2rem;
+            height: 1.2rem;
+            border: 2px solid var(--text-on-accent);
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Toast Notifications */
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .toast {
+            background-color: var(--bg-card);
+            color: var(--text-main);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+            border-left: 4px solid var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 300px;
+            animation: slideIn 0.3s ease-out;
+            font-size: 0.9rem;
+        }
+
+        .toast.success {
+            border-left-color: var(--success-color);
+        }
+
+        .toast.error {
+            border-left-color: var(--error-color);
+        }
+
+        .toast i {
+            font-size: 1.1rem;
+        }
+
+        .toast.success i {
+            color: var(--success-color);
+        }
+
+        .toast.error i {
+            color: var(--error-color);
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 650px) {
+            .form-section {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .b2b-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .auth-form {
+                gap: 1.5rem;
+            }
+
+            .header-logo-link {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <div class="container">
+        <main class="form-section">
+            <!-- Dark/Light Mode Toggle Button -->
+            <button id="themeToggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+
+            <div class="form-wrapper">
+
+                <!-- Logo Link at the top -->
+                <div class="form-header-logo">
+                    <a href="index.html" class="header-logo-link" title="Back to Home">
+                       <img src="images/b2b_logo.png" width="150px" alt="">
+                       
+                        <!-- <span>NEXUS INDUSTRIAL</span> -->
+                    </a>
+                    <h3>Industrial Supplier Catalog</h3>
+                </div>
+
+                <div class="form-toggle">
+                    <button class="toggle-btn active" id="btnShowLogin">Sign In</button>
+                    <button class="toggle-btn" id="btnShowSignup">Apply for Account</button>
+                </div>
+
+                <!-- Login Form -->
+                <form id="loginForm" class="auth-form active" novalidate>
+                    <div class="input-group">
+                        <label for="loginEmail">Work Email</label>
+                        <div class="input-wrapper">
+                            <i class="fa-regular fa-envelope"></i>
+                            <input type="email" id="loginEmail" class="form-input" placeholder="name@company.com"
+                                required>
+                        </div>
+                        <div class="error-msg">Please enter a valid business email.</div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="loginPassword">Password</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" id="loginPassword" class="form-input" placeholder="••••••••"
+                                required>
+                        </div>
+                        <div class="error-msg">Password is required.</div>
+                    </div>
+
+                    <div class="form-actions">
+                        <label class="remember-me">
+                            <input type="checkbox"> Keep me signed in
+                        </label>
+                        <a href="#" class="forgot-pass">Forgot Password?</a>
+                        <a href="index.html" class="forgot-pass">Back to Home</a>
+                    </div>
+
+                    <button type="submit" class="btn-submit">
+                        <span class="btn-text">Sign In to Catalog</span>
+                        <div class="spinner"></div>
+                    </button>
+                    
+                </form>
+
+                <!-- Signup Form (B2B Specific) -->
+                <form id="signupForm" class="auth-form" novalidate>
+
+                    <!-- Group 1: Company Info -->
+                    <div class="b2b-grid">
+                        <div class="input-group">
+                            <label for="companyName">Company Name</label>
+                            <div class="input-wrapper">
+                                <i class="fa-regular fa-building"></i>
+                                <input type="text" id="companyName" class="form-input" placeholder="Acme Corp" required>
+                            </div>
+                            <div class="error-msg">Company Name is required.</div>
+                        </div>
+                        <div class="input-group">
+                            <label for="industry">Industry</label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-cogs"></i>
+                                <select id="industry" class="form-input" required>
+                                    <option value="" disabled selected>Select Sector</option>
+                                    <option value="manufacturing">Manufacturing</option>
+                                    <option value="construction">Construction</option>
+                                    <option value="automotive">Automotive</option>
+                                    <option value="aerospace">Aerospace</option>
+                                    <option value="electronics">Electronics</option>
+                                    <option value="energy">Energy & Utilities</option>
+                                </select>
+                            </div>
+                            <div class="error-msg">Please select an industry.</div>
+                        </div>
+                    </div>
+
+                    <!-- Group 2: Personal Info -->
+                    <div class="b2b-grid">
+                        <div class="input-group">
+                            <label for="signupName">Full Name</label>
+                            <div class="input-wrapper">
+                                <i class="fa-regular fa-user"></i>
+                                <input type="text" id="signupName" class="form-input" placeholder="John Doe" required>
+                            </div>
+                            <div class="error-msg">Name is required.</div>
+                        </div>
+                        <div class="input-group">
+                            <label for="signupPhone">Phone</label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-phone"></i>
+                                <input type="tel" id="signupPhone" class="form-input" placeholder="+1 (555) 000-0000">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Group 3: Account Credentials -->
+                    <div class="input-group">
+                        <label for="signupEmail">Work Email</label>
+                        <div class="input-wrapper">
+                            <i class="fa-regular fa-envelope"></i>
+                            <input type="email" id="signupEmail" class="form-input" placeholder="name@company.com"
+                                required>
+                        </div>
+                        <div class="error-msg">Valid email is required.</div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="signupPassword">Password</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" id="signupPassword" class="form-input"
+                                placeholder="Create a strong password" minlength="8" required>
+                        </div>
+                        <div class="error-msg">Min. 8 characters required.</div>
+                    </div>
+
+                    <button type="submit" class="btn-submit">
+                        <span class="btn-text">Request B2B Access</span>
+                        <div class="spinner"></div>
+                    </button>
+
+                    <p style="font-size: 0.8rem; color: var(--text-muted); text-align: center; margin-top: 0.5rem;">
+                        By applying, you agree to our <a href="#" style="color: var(--primary-color);">Terms of
+                            Service</a> and <a href="#" style="color: var(--primary-color);">Privacy Policy</a>.
+                    </p>
+                    <p style="font-size: 16px; color: var(--text-muted); text-align: center; margin-top:-10px;">
+                       
+                            <a href="#" style="color: var(--primary-color); text-decoration: none; font-weight: 600; ">Already have any Account? <a href="login_signup.html" style="color: #d4af37; font-weight: 800;">Login</a></a>.
+                    </p>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // --- DOM Elements ---
+        const btnShowLogin = document.getElementById('btnShowLogin');
+        const btnShowSignup = document.getElementById('btnShowSignup');
+        const loginForm = document.getElementById('loginForm');
+        const signupForm = document.getElementById('signupForm');
+        const toastContainer = document.getElementById('toastContainer');
+
+        // Theme Elements
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const themeIcon = themeToggleBtn.querySelector('i');
+
+        // --- THEME LOGIC ---
+
+        // Check Local Storage for Theme Preference
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+
+            const isDark = document.body.classList.contains('dark-mode');
+
+            // Toggle Icon
+            if (isDark) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // --- Event Listeners: Toggle Forms ---
+        btnShowLogin.addEventListener('click', () => switchForm('login'));
+        btnShowSignup.addEventListener('click', () => switchForm('signup'));
+
+        function switchForm(formType) {
+            // Reset Forms
+            loginForm.reset();
+            signupForm.reset();
+            document.querySelectorAll('.error-msg').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('.form-input').forEach(el => el.classList.remove('error'));
+
+            if (formType === 'login') {
+                btnShowLogin.classList.add('active');
+                btnShowSignup.classList.remove('active');
+                loginForm.classList.add('active');
+                signupForm.classList.remove('active');
+            } else {
+                btnShowSignup.classList.add('active');
+                btnShowLogin.classList.remove('active');
+                signupForm.classList.add('active');
+                loginForm.classList.remove('active');
+            }
+        }
+
+        // --- Event Listeners: Form Submissions ---
+        loginForm.addEventListener('submit', (e) => handleLogin(e));
+        signupForm.addEventListener('submit', (e) => handleSignup(e));
+
+        // --- Logic: Login ---
+        function handleLogin(e) {
+            e.preventDefault();
+
+            const email = document.getElementById('loginEmail');
+            const pass = document.getElementById('loginPassword');
+            let isValid = true;
+
+            // Simple Validation
+            if (!validateEmail(email.value)) {
+                showError(email, 'Please enter a valid business email.');
+                isValid = false;
+            }
+            if (pass.value.trim() === '') {
+                showError(pass, 'Password is required.');
+                isValid = false;
+            }
+
+            if (isValid) {
+                setLoading(loginForm, true);
+                // Simulate API Call
+                setTimeout(() => {
+                    setLoading(loginForm, false);
+                    showToast('Welcome back! Redirecting to dashboard...', 'success');
+                }, 1500);
+            }
+        }
+
+        // --- Logic: Signup ---
+        function handleSignup(e) {
+            e.preventDefault();
+
+            const company = document.getElementById('companyName');
+            const industry = document.getElementById('industry');
+            const name = document.getElementById('signupName');
+            const email = document.getElementById('signupEmail');
+            const pass = document.getElementById('signupPassword');
+
+            let isValid = true;
+
+            if (company.value.trim() === '') {
+                showError(company, 'Company Name is required.');
+                isValid = false;
+            }
+            if (industry.value === '') {
+                showError(industry, 'Please select an industry.');
+                isValid = false;
+            }
+            if (name.value.trim() === '') {
+                showError(name, 'Full Name is required.');
+                isValid = false;
+            }
+            if (!validateEmail(email.value)) {
+                showError(email, 'Please enter a valid business email.');
+                isValid = false;
+            }
+            if (pass.value.length < 8) {
+                showError(pass, 'Password must be at least 8 characters.');
+                isValid = false;
+            }
+
+            if (isValid) {
+                setLoading(signupForm, true);
+                // Simulate API Call
+                setTimeout(() => {
+                    setLoading(signupForm, false);
+                    showToast('Application received! Please check your email to verify.', 'success');
+                    // Switch back to login after successful signup
+                    setTimeout(() => switchForm('login'), 2000);
+                }, 2000);
+            }
+        }
+
+        // --- Helper: Validation ---
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(String(email).toLowerCase());
+        }
+
+        function showError(inputElement, message) {
+            inputElement.classList.add('error');
+            // Find the next sibling which is the error msg div
+            const errorDiv = inputElement.parentElement.nextElementSibling;
+            if (errorDiv && errorDiv.classList.contains('error-msg')) {
+                errorDiv.innerText = message;
+                errorDiv.style.display = 'block';
+            }
+        }
+
+        // Remove error on input
+        document.querySelectorAll('.form-input').forEach(input => {
+            input.addEventListener('input', function () {
+                this.classList.remove('error');
+                const errorDiv = this.parentElement.nextElementSibling;
+                if (errorDiv && errorDiv.classList.contains('error-msg')) {
+                    errorDiv.style.display = 'none';
+                }
+            });
+        });
+
+        // --- Helper: Loading State ---
+        function setLoading(form, isLoading) {
+            const btn = form.querySelector('.btn-submit');
+            const btnText = btn.querySelector('.btn-text');
+            const spinner = btn.querySelector('.spinner');
+
+            if (isLoading) {
+                btn.disabled = true;
+                btnText.style.display = 'none';
+                spinner.style.display = 'block';
+            } else {
+                btn.disabled = false;
+                btnText.style.display = 'block';
+                spinner.style.display = 'none';
+            }
+        }
+
+        // --- Helper: Toast Notifications ---
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+
+            const iconClass = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle';
+
+            toast.innerHTML = `
+                <i class="fa-solid ${iconClass}"></i>
+                <span>${message}</span>
+            `;
+
+            toastContainer.appendChild(toast);
+
+            // Remove after 3.5 seconds
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateX(100%)';
+                toast.style.transition = 'all 0.3s ease';
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+    </script>
+</body>
+
+</html>
