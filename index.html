@@ -199,7 +199,6 @@
         [data-theme="dark"] .btn-control {
             color: var(--accent-color);
             border-color: var(--accent-color);
-            /* background-color: white; */
         }
 
         [data-theme="dark"] .btn-control:hover {
@@ -210,7 +209,6 @@
         [data-theme="dark"] .navbar-toggler {
             color: white;
             background-color: white;
-            /* padding: 20px; */
             border-radius: 5px;
         }
 
@@ -220,7 +218,7 @@
                 url('https://picsum.photos/seed/factory/1920/1080.jpg');
             background-size: cover;
             background-position: center;
-            height: 500px;
+            height: 700px;
             display: flex;
             align-items: center;
             color: #fff;
@@ -338,15 +336,6 @@
             padding-bottom: 15px;
         }
 
-        /* .section-heading::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            width: 60px;
-            height: 3px;
-            background-color: var(--accent-color);
-        } */
-
         [dir="ltr"] .section-heading::after {
             left: 0;
         }
@@ -368,7 +357,6 @@
 
         [data-theme="dark"] .luxury-card {
             box-shadow: none;
-            /* Remove shadow in dark mode for flat look */
         }
 
         .luxury-card:hover {
@@ -492,26 +480,214 @@
             margin-bottom: 20px;
         }
 
-        /* --- Footer --- */
+        /* --- UPDATED FOOTER STYLES --- */
         footer {
             background-color: var(--primary-color);
             color: #fff;
-            padding: 60px 0 20px;
+            padding-top: 80px;
+            border-top: 5px solid var(--accent-color);
+            font-family: var(--font-body);
+            position: relative;
         }
 
-        footer h5 {
+        /* Footer Background Pattern (Subtle Industrial Texture) */
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(#ffffff 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.03;
+            pointer-events: none;
+        }
+
+        .footer-logo {
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+
+        .footer-desc {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-title {
             color: var(--accent-color);
-            margin-bottom: 20px;
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
         }
 
-        footer a {
-            color: #ccc;
+        /* Decorative line under footer titles */
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        .footer-col:hover .footer-title::after {
+            width: 100%;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
-            transition: 0.3s;
+            transition: all 0.3s ease;
+            display: inline-block;
+            position: relative;
+            padding-left: 15px;
         }
 
-        footer a:hover {
+        [dir="rtl"] .footer-links a {
+            padding-left: 0;
+            padding-right: 15px;
+        }
+
+        /* Little arrow on hover */
+        .footer-links a::before {
+            content: '\F285';
+            /* Bootstrap Icon Arrow Right Short */
+            font-family: 'bootstrap-icons';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
             color: var(--accent-color);
+            opacity: 0;
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+        }
+
+        [dir="rtl"] .footer-links a::before {
+            left: auto;
+            right: 0;
+            content: '\F285';
+            /* Need to flip if strictly RTL, but left icon is acceptable or use rotate */
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+            padding-left: 20px;
+        }
+
+        [dir="rtl"] .footer-links a:hover {
+            padding-left: 0;
+            padding-right: 20px;
+        }
+
+        .footer-links a:hover::before {
+            opacity: 1;
+            left: 5px;
+        }
+
+        [dir="rtl"] .footer-links a:hover::before {
+            left: auto;
+            right: 5px;
+        }
+
+        /* Contact Info in Footer */
+        .contact-info li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .contact-info i {
+            color: var(--accent-color);
+            margin-right: 15px;
+            margin-top: 4px;
+            font-size: 1.1rem;
+        }
+
+        [dir="rtl"] .contact-info i {
+            margin-right: 0;
+            margin-left: 15px;
+        }
+
+        /* Newsletter Box */
+        .newsletter-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .newsletter-form .form-control {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            padding: 12px 15px;
+            border-radius: 0;
+        }
+
+        .newsletter-form .form-control:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--accent-color);
+            color: #fff;
+            box-shadow: none;
+        }
+
+        .newsletter-form .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Footer Bottom */
+        .footer-bottom {
+            background-color: #1e203a;
+            /* Slightly lighter/different shade than primary */
+            padding: 25px 0;
+            margin-top: 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border-radius: 50%;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .footer-social-links a:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        [dir="rtl"] .footer-social-links a {
+            margin-right: 0;
+            margin-left: 10px;
         }
 
         /* --- Map --- */
@@ -557,7 +733,6 @@
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#" onclick="switchPage('home')">
-                <!-- <i class="bi bi-layers-fill text-primary me-2"></i> -->
                 <img src="images/b2b_logo.png" width="100px" alt="">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -590,6 +765,8 @@
                             data-page="pricing">Pricing</a></li>
                     <li class="nav-item"><a class="nav-link" href="#" onclick="switchPage('contact')"
                             data-page="contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login_signup.html"
+                            data-page="contact">Login/Signup</a></li>
                     <li class="nav-item"><a class="nav-link" href="dashboard.html" data-page="contact">Dashboard</a>
                     </li>
                 </ul>
@@ -613,7 +790,7 @@
     <main style="margin-top: 76px;" class="overflow-hidden">
 
         <!-- ================= HOME PAGE 1 ================= -->
-        <div id="home" class="page-content active" style="height: 600px;">
+        <div id="home" class="page-content active">
             <!-- Section 1: Hero -->
             <section class="hero-section">
                 <div class="container">
@@ -639,7 +816,7 @@
                         <div class="col-md-4">
                             <div class="luxury-card text-center">
                                 <img src="images/Advanced analytics & automation.jpg" width="350px" height="300px"
-                                    class="mb-3 rounded" alt="Heavy Machinery">
+                                    class="img-fluid mb-3 rounded" alt="Heavy Machinery">
                                 <h4>Advanced analytics & automation</h4>
                                 <p class="text-muted">Built for complex enterprise environments, they integrate
                                     seamlessly across data sources and systems while ensuring governance, security, and
@@ -648,10 +825,8 @@
                         </div>
                         <div class="col-md-4">
                             <div class="luxury-card text-center">
-                                <!-- <img src="images/Precision Tools.jpg" width="315" height="100" class="img-fluid mb-3 rounded"
-                                    alt="Precision Tools"> -->
                                 <img src="images/Enterprise securitycompliance.jpg" width="350px" height="300px" alt=""
-                                    class="mb-3">
+                                    class="img-fluid mb-3">
                                 <h4>Enterprise security/compliance</h4>
                                 <p class="text-muted">Enterprise Security & Compliance solutions protect critical
                                     business systems, data, and operations while ensuring adherence to global regulatory
@@ -661,7 +836,7 @@
                         <div class="col-md-4">
                             <div class="luxury-card text-center">
                                 <img src="images/Industrial robots (KUKA, FANUC).jpg" width="350px" height="300px"
-                                    class="mb-3 rounded" alt="Safety Gear">
+                                    class="img-fluid mb-3 rounded" alt="Safety Gear">
                                 <h4>Industrial robots (KUKA, FANUC)</h4>
                                 <p class="text-muted">Industrial robots are high-precision, programmable automation
                                     systems designed to perform repetitive, complex, and hazardous tasks with consistent
@@ -1136,7 +1311,7 @@
                 </div>
             </section>
 
-            <!-- NEW 4. Core Values -->
+            <!-- 4. Core Values -->
             <section class="section-padding">
                 <div class="container">
                     <div class="text-center mb-5">
@@ -1200,7 +1375,7 @@
                 </div>
             </section>
 
-            <!-- NEW 6. Our Approach -->
+            <!-- 6. Our Approach -->
             <section class="section-padding">
                 <div class="container">
                     <div class="text-center mb-5">
@@ -1233,7 +1408,7 @@
                 </div>
             </section>
 
-            <!-- NEW 7. Sustainability (Parallax) -->
+            <!-- 7. Sustainability (Parallax) -->
             <section class="parallax-section">
                 <div class="container text-center">
                     <i class="bi bi-tree-fill display-4 mb-3 text-white"></i>
@@ -1625,9 +1800,7 @@
                 </div>
             </section>
 
-            <!-- DELETED: Global Offices Section as requested -->
-
-            <!-- 5. Hours (Now Section 5) -->
+            <!-- 5. Hours -->
             <section class="section-padding bg-light-luxury text-center">
                 <div class="container">
                     <h3>Customer Support Hours</h3>
@@ -1647,7 +1820,7 @@
                     </div>
                 </div>
             </section>
-            <!-- 6. Social (Now Section 6) -->
+            <!-- 6. Social -->
             <section class="section-padding text-center">
                 <div class="container">
                     <h2>Connect With Us</h2>
@@ -1661,48 +1834,99 @@
 
     </main>
 
-    <!-- Footer -->
+    <!-- UPDATED FOOTER DESIGN -->
     <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 mb-4">
-                    <h4 class="mb-3"><img src="images/b2b_logo.png" width="100px" alt=""></h4>
-                    <p>Providing trusted industrial products, components, and solutions to
-                        enterprises worldwide. We combine verified sourcing, technical expertise, and reliable supply to
-                        help businesses operate efficiently and compliantly.</p>
-                </div>
-                <div class="col-lg-2 col-md-4 mb-4">
-                    <h5>Quick Links</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#" onclick="switchPage('home')">Home</a></li>
-                        <li><a href="#" onclick="switchPage('about')">About</a></li>
-                        <li><a href="#" onclick="switchPage('services')">Services</a></li>
-                        <li><a href="#" onclick="switchPage('contact')">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-2 col-md-4 mb-4">
-                    <h5>Legal</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="mb-2">Privacy Policy</a></li>
-                        <li><a href="#" class="mb-2">Terms of Service</a></li>
-                        <li><a href="#" class="mb-2">Cookie Policy</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-4 col-md-4 mb-4">
-                    <h5>Newsletter</h5>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Enter email">
-                        <button class="btn btn-luxury" type="button">Subscribe</button>
+        <div class="container position-relative" style="z-index: 2;">
+            <div class="row g-5">
+
+                <!-- Column 1: Brand & About -->
+                <div class="col-lg-3 footer-col">
+                    <div class="footer-logo">
+                        <img src="images/b2b_logo.png" width="120px" alt="Apex Industrial">
+                    </div>
+                    <p class="footer-desc">
+                        B2B Industrial Supplier Catalog. We provide verified sourcing,
+                        precision manufacturing, and advanced logistics to power the world's most complex industrial
+                        operations.
+                    </p>
+                    <!-- Social Icons -->
+                    <div class="footer-social-links mt-4">
+                        <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                        <!-- <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a> -->
+                        <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
                     </div>
                 </div>
+
+                <!-- Column 2: Industrial Solutions -->
+                <div class="col-lg-2 col-md-6 footer-col">
+                    <h4 class="footer-title">Solutions</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Industrial Automation</a></li>
+                        <li><a href="#">Advanced Robotics</a></li>
+                        <li><a href="#">Safety Equipment</a></li>
+                        <li><a href="#">Logistics Network</a></li>
+                        <li><a href="#">Custom Fabrication</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Company Info -->
+                <div class="col-lg-2 col-md-6 footer-col">
+                    <h4 class="footer-title">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="switchPage('about')">About Us</a></li>
+                        <li><a href="#">Leadership Team</a></li>
+                        <li><a href="#">Careers & Jobs</a></li>
+                        <li><a href="#" onclick="switchPage('blog')">News & Insights</a></li>
+                        <li><a href="#" onclick="switchPage('contact')">Contact Support</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Legal & Support -->
+                <div class="col-lg-2 col-md-6 footer-col">
+                    <h4 class="footer-title">Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Order Tracking</a></li>
+                        <li><a href="#">Returns Policy</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 5: Contact & Newsletter -->
+                <div class="col-lg-3 col-md-6 footer-col">
+                    <h4 class="footer-title">Contact Us</h4>
+
+                    <ul class="contact-info list-unstyled mb-4">
+                        <li>
+                            <i class="bi bi-geo-alt-fill"></i>
+                            <span>123 Industrial Blvd, Sector 4<br>Chicago, IL 60601, USA</span>
+                        </li>
+                        <li>
+                            <i class="bi bi-telephone-fill"></i>
+                            <span>+1 (800) 555-0199</span>
+                        </li>
+                        <li>
+                            <i class="bi bi-envelope-fill"></i>
+                            <span>sales@apexindustrial.com</span>
+                        </li>
+                    </ul>
+
+                    
+                </div>
+
             </div>
-            <hr class="border-secondary">
-            <div class="row">
-                <div class="col-md-6 text-center text-md-start">
+        </div>
+
+        <!-- Footer Bottom Bar -->
+        <div class="footer-bottom">
+            <div class="container d-md-flex justify-content-between align-items-center">
+                <div class="mb-3 mb-md-0 text-center text-md-start">
                     <p class="mb-0 text-white-50">&copy; 2026 B2B Industrial Supplier Catalog. All rights reserved.</p>
                 </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <p class="mb-0 text-white-50">Designed for Luxury.</p>
+                <div class="text-center text-md-end">
+                    <p class="mb-0 text-white-50">Designed for Industrial Excellence.</p>
                 </div>
             </div>
         </div>
