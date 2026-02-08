@@ -54,8 +54,8 @@
             font-family: var(--font-body);
             color: var(--text-body);
             background-color: var(--bg-body);
-            overflow-x: hidden;
             transition: background-color 0.3s ease, color 0.3s ease;
+            overflow-x: hidden; /* Prevents horizontal scroll bar */
         }
 
         h1,
@@ -66,13 +66,14 @@
         h6 {
             font-family: var(--font-heading);
             font-weight: 600;
+            margin-bottom: 1rem;
         }
 
         /* --- Navigation --- */
         .navbar {
             background-color: var(--bg-nav);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            padding: 1rem 0;
+            padding: 0.5rem 0;
             transition: background-color 0.3s ease;
         }
 
@@ -80,15 +81,16 @@
             font-family: var(--font-heading);
             font-weight: 700;
             color: var(--primary-color) !important;
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             letter-spacing: -0.5px;
         }
 
         .nav-link {
             color: var(--text-body);
             font-weight: 500;
-            margin: 0 10px;
+            margin: 0 5px;
             position: relative;
+            font-size: 0.9rem;
         }
 
         /* Standard Hover (Light Mode) */
@@ -97,7 +99,7 @@
             color: var(--primary-color);
         }
 
-        /* UPDATED: Dark Mode Hover (Gold Accent) */
+        /* Dark Mode Hover (Gold Accent) */
         [data-theme="dark"] .nav-link:hover,
         [data-theme="dark"] .nav-link.active {
             color: var(--accent-color);
@@ -117,7 +119,6 @@
 
         [data-theme="dark"] .nav-link::after {
             background-color: var(--accent-color);
-            /* Gold underline in dark mode */
         }
 
         [dir="ltr"] .nav-link::after {
@@ -141,14 +142,14 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             border-top: 3px solid var(--accent-color);
             border-radius: 4px;
-            padding: 10px 0;
+            padding: 5px 0;
             background-color: var(--bg-card);
         }
 
         .dropdown-item {
             font-family: var(--font-body);
-            font-size: 0.95rem;
-            padding: 10px 20px;
+            font-size: 0.9rem;
+            padding: 8px 20px;
             color: var(--text-body);
         }
 
@@ -157,7 +158,6 @@
             background-color: var(--bg-secondary);
             color: var(--primary-color);
             padding-left: 25px;
-            /* Slight move effect on hover */
         }
 
         [dir="rtl"] .dropdown-item:hover,
@@ -166,7 +166,6 @@
             padding-right: 25px;
         }
 
-        /* Dark Mode Dropdown Hover */
         [data-theme="dark"] .dropdown-item:hover,
         [data-theme="dark"] .dropdown-item.active {
             color: var(--accent-color);
@@ -176,16 +175,16 @@
         .nav-controls {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 5px;
         }
 
         .btn-control {
             border: 1px solid var(--border-color);
             color: var(--text-body);
             background: transparent;
-            padding: 5px 12px;
+            padding: 4px 10px;
             border-radius: 20px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             transition: 0.3s;
             cursor: pointer;
         }
@@ -218,21 +217,22 @@
                 url('https://picsum.photos/seed/factory/1920/1080.jpg');
             background-size: cover;
             background-position: center;
-            height: 700px;
+            height: 500px;
             display: flex;
             align-items: center;
             color: #fff;
-            /* Always white text for hero */
             position: relative;
+            padding: 40px 0;
+            overflow: hidden; /* ADDED: Contains background and content */
         }
 
         /* --- Hero Section (Split - For Home 2) --- */
         .hero-split {
-            height: 90vh;
+            height: 70vh;
             display: flex;
             align-items: center;
             background-color: var(--bg-card);
-            overflow: hidden;
+            overflow: hidden; /* ADDED: Keeps split layout contained */
         }
 
         .hero-split-text {
@@ -242,7 +242,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 50px;
+            padding: 30px;
         }
 
         .hero-split-img {
@@ -254,8 +254,8 @@
         }
 
         .hero-title {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
             line-height: 1.2;
         }
 
@@ -267,20 +267,22 @@
             background-repeat: no-repeat;
             background-size: cover;
             color: #fff;
-            padding: 100px 0;
+            padding: 60px 0;
+            overflow: hidden; /* ADDED: Standard for parallax effects */
         }
 
         /* --- Buttons --- */
         .btn-luxury {
             background-color: var(--accent-color);
             color: #fff;
-            padding: 12px 30px;
+            padding: 8px 20px;
             border-radius: 2px;
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 1px;
             border: none;
             transition: all 0.3s ease;
+            font-size: 0.9rem;
         }
 
         .btn-luxury:hover {
@@ -292,11 +294,12 @@
         .btn-outline-luxury {
             border: 2px solid #fff;
             color: #fff;
-            padding: 10px 30px;
+            padding: 6px 20px;
             border-radius: 2px;
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-left: 10px;
+            font-size: 0.9rem;
         }
 
         [dir="rtl"] .btn-outline-luxury {
@@ -311,7 +314,7 @@
 
         /* --- General Section Styling --- */
         .section-padding {
-            padding: 80px 0;
+            padding: 40px 0;
         }
 
         .bg-light-luxury {
@@ -321,19 +324,19 @@
         .section-title {
             color: var(--primary-color);
             font-weight: 700;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             display: block;
         }
 
         .section-heading {
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             color: var(--text-body);
-            margin-bottom: 50px;
+            margin-bottom: 30px;
             position: relative;
-            padding-bottom: 15px;
+            padding-bottom: 10px;
         }
 
         [dir="ltr"] .section-heading::after {
@@ -348,7 +351,7 @@
         .luxury-card {
             border: 1px solid var(--border-color);
             background: var(--bg-card);
-            padding: 30px;
+            padding: 20px;
             border-radius: 4px;
             box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
@@ -360,34 +363,35 @@
         }
 
         .luxury-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
             border-color: var(--accent-color);
         }
 
         .icon-box {
-            font-size: 2.5rem;
+            font-size: 2rem;
             color: var(--accent-color);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         /* --- Home 2 Workflow Steps --- */
         .step-item {
             text-align: center;
             position: relative;
+            margin-bottom: 20px;
         }
 
         .step-number {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             background-color: var(--accent-color);
             color: #fff;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.25rem;
+            font-size: 1rem;
             font-weight: bold;
-            margin: 0 auto 20px;
+            margin: 0 auto 15px;
         }
 
         /* Connecting line for desktop */
@@ -395,7 +399,7 @@
             .step-item:not(:last-child)::after {
                 content: '';
                 position: absolute;
-                top: 25px;
+                top: 20px;
                 right: -50%;
                 width: 100%;
                 height: 2px;
@@ -412,16 +416,16 @@
         /* --- Home 2 Specific Styles --- */
         .feature-list-item {
             border-bottom: 1px solid var(--border-color);
-            padding: 20px 0;
+            padding: 15px 0;
             display: flex;
             align-items: center;
         }
 
         .feature-number {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 700;
             color: rgba(44, 46, 86, 0.1);
-            margin-right: 20px;
+            margin-right: 15px;
             line-height: 1;
         }
 
@@ -431,13 +435,14 @@
 
         [dir="rtl"] .feature-number {
             margin-right: 0;
-            margin-left: 20px;
+            margin-left: 15px;
         }
 
         /* --- Utility: Page Visibility --- */
         .page-content {
             display: none;
             animation: fadeIn 0.5s;
+            overflow: hidden; /* ADDED: Contains page animations */
         }
 
         .page-content.active {
@@ -463,7 +468,7 @@
 
         .testimonial-card {
             background: var(--bg-card);
-            padding: 40px;
+            padding: 30px;
             border-radius: 4px;
             text-align: center;
             border: 1px solid var(--border-color);
@@ -474,23 +479,24 @@
         }
 
         .quote-icon {
-            font-size: 3rem;
+            font-size: 2.5rem;
             color: var(--accent-color);
             opacity: 0.3;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         /* --- UPDATED FOOTER STYLES --- */
         footer {
             background-color: var(--primary-color);
             color: #fff;
-            padding-top: 80px;
+            padding-top: 50px;
             border-top: 5px solid var(--accent-color);
             font-family: var(--font-body);
             position: relative;
+            overflow: hidden; /* ADDED: Contains footer pattern/parallax */
         }
 
-        /* Footer Background Pattern (Subtle Industrial Texture) */
+        /* Footer Background Pattern */
         footer::before {
             content: "";
             position: absolute;
@@ -505,24 +511,25 @@
         }
 
         .footer-logo {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             display: inline-block;
         }
 
         .footer-desc {
             color: rgba(255, 255, 255, 0.7);
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
         }
 
         .footer-title {
             color: var(--accent-color);
             font-family: var(--font-heading);
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             position: relative;
             display: inline-block;
         }
@@ -550,7 +557,7 @@
         }
 
         .footer-links li {
-            margin-bottom: 12px;
+            margin-bottom: 8px;
         }
 
         .footer-links a {
@@ -560,6 +567,7 @@
             display: inline-block;
             position: relative;
             padding-left: 15px;
+            font-size: 0.9rem;
         }
 
         [dir="rtl"] .footer-links a {
@@ -570,7 +578,6 @@
         /* Little arrow on hover */
         .footer-links a::before {
             content: '\F285';
-            /* Bootstrap Icon Arrow Right Short */
             font-family: 'bootstrap-icons';
             position: absolute;
             left: 0;
@@ -585,8 +592,6 @@
         [dir="rtl"] .footer-links a::before {
             left: auto;
             right: 0;
-            content: '\F285';
-            /* Need to flip if strictly RTL, but left icon is acceptable or use rotate */
             transform: translateY(-50%) rotate(180deg);
         }
 
@@ -614,26 +619,27 @@
         .contact-info li {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
         }
 
         .contact-info i {
             color: var(--accent-color);
-            margin-right: 15px;
+            margin-right: 10px;
             margin-top: 4px;
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
 
         [dir="rtl"] .contact-info i {
             margin-right: 0;
-            margin-left: 15px;
+            margin-left: 10px;
         }
 
         /* Newsletter Box */
         .newsletter-box {
             background: rgba(255, 255, 255, 0.05);
-            padding: 25px;
+            padding: 20px;
             border-radius: 4px;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
@@ -642,7 +648,7 @@
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.1);
             color: #fff;
-            padding: 12px 15px;
+            padding: 10px 15px;
             border-radius: 0;
         }
 
@@ -660,9 +666,8 @@
         /* Footer Bottom */
         .footer-bottom {
             background-color: #1e203a;
-            /* Slightly lighter/different shade than primary */
-            padding: 25px 0;
-            margin-top: 60px;
+            padding: 15px 0;
+            margin-top: 40px;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
@@ -670,14 +675,15 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
+            width: 35px;
+            height: 35px;
             background: rgba(255, 255, 255, 0.1);
             color: #fff;
             border-radius: 50%;
-            margin-right: 10px;
+            margin-right: 8px;
             transition: all 0.3s ease;
             text-decoration: none;
+            font-size: 0.9rem;
         }
 
         .footer-social-links a:hover {
@@ -687,13 +693,13 @@
 
         [dir="rtl"] .footer-social-links a {
             margin-right: 0;
-            margin-left: 10px;
+            margin-left: 8px;
         }
 
         /* --- Map --- */
         .map-container iframe {
             width: 100%;
-            height: 400px;
+            height: 300px;
             border: 0;
             filter: grayscale(20%) contrast(1.1);
         }
@@ -708,7 +714,7 @@
         }
 
         .form-control {
-            padding: 12px;
+            padding: 10px;
             border: 1px solid var(--border-color);
             border-radius: 0;
             background-color: var(--bg-input);
@@ -733,7 +739,7 @@
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#" onclick="switchPage('home')">
-                <img src="images/b2b_logo.png" width="100px" alt="">
+                <img src="images/b2b_logo.png" width="80px" alt="">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon" style="color: white;"></span>
@@ -787,7 +793,7 @@
     </nav>
 
     <!-- MAIN CONTENT CONTAINER -->
-    <main style="margin-top: 76px;" class="overflow-hidden">
+    <main style="margin-top: 70px;">
 
         <!-- ================= HOME PAGE 1 ================= -->
         <div id="home" class="page-content active">
@@ -797,7 +803,7 @@
                     <div class="row">
                         <div class="col-lg-8">
                             <h1 class="hero-title">Engineering Excellence for Global Industries</h1>
-                            <p class="lead mb-4 opacity-75">Premium industrial supplies, machinery components, and
+                            <p class="lead mb-3 opacity-75">Premium industrial supplies, machinery components, and
                                 logistical solutions tailored for enterprise-grade operations.</p>
                             <a href="#" onclick="switchPage('contact')" class="btn btn-luxury">Request Quote</a>
                             <a href="#" onclick="switchPage('services')" class="btn btn-outline-luxury">Explore
@@ -835,8 +841,8 @@
                         </div>
                         <div class="col-md-4">
                             <div class="luxury-card text-center">
-                                <img src="images/Industrial robots (KUKA, FANUC).jpg" width="350px" height="300px"
-                                    class="img-fluid mb-3 rounded" alt="Safety Gear">
+                                <img src="images/Industrial robots (KUKA, FANUC).jpg" width="350px" height="400px"
+                                    class="img-fluid mb-3 rounded" alt="Safety Gear" style="height: 230px;">
                                 <h4>Industrial robots (KUKA, FANUC)</h4>
                                 <p class="text-muted">Industrial robots are high-precision, programmable automation
                                     systems designed to perform repetitive, complex, and hazardous tasks with consistent
@@ -855,12 +861,12 @@
                             <img src="https://picsum.photos/seed/robotarm/600/500" class="img-fluid rounded shadow"
                                 alt="Technology">
                         </div>
-                        <div class="col-lg-6 ps-lg-5">
+                        <div class="col-lg-6 ps-lg-4">
                             <span
                                 style="color: var(--accent-color); font-weight: 700; text-transform: uppercase;">Innovation
                                 Lab</span>
-                            <h2 class="display-5 fw-bold mb-4">Future-Ready Industrial Automation</h2>
-                            <p class="lead mb-4 opacity-75">Future-ready industrial automation enables manufacturers to
+                            <h2 class="mb-3 fw-bold">Future-Ready Industrial Automation</h2>
+                            <p class="mb-3 opacity-75">Future-ready industrial automation enables manufacturers to
                                 adapt, scale, and optimize operations in an increasingly digital, connected, and
                                 data-driven environment. These solutions combine intelligent robotics, advanced
                                 controls, real-time data, and software-defined automation.</p>
@@ -872,7 +878,7 @@
                                 <li class="mb-2"><i class="bi bi-check-circle-fill text-warning me-2"></i>Electronics &
                                     Semiconductors</li>
                             </ul>
-                            <a href="#" class="btn btn-outline-light mt-3">Explore Technology</a>
+                            <a href="#" class="btn btn-outline-light mt-2">Explore Technology</a>
                         </div>
                     </div>
                 </div>
@@ -884,8 +890,8 @@
                     <div class="row align-items-center">
                         <div class="col-lg-6">
                             <span class="section-title">Why Apex</span>
-                            <h2 class="section-heading mb-4">Setting the Standard in B2B Supply</h2>
-                            <p class="text-muted">We deliver reliable, compliant, and future-ready industrial supply
+                            <h2 class="section-heading mb-3">Setting the Standard in B2B Supply</h2>
+                            <p class="text-muted mb-3">We deliver reliable, compliant, and future-ready industrial supply
                                 solutions that help
                                 businesses operate with confidence. Through verified sourcing, technical expertise, and
                                 dependable fulfillment, we support complex procurement needs across industries and
@@ -916,7 +922,7 @@
                         </div>
                         <div class="col-lg-6">
                             <img src="images/heavy_mechinery.jpg" height="200px" class="img-fluid rounded shadow"
-                                alt="Warehouse" style="height: 600px; width: 100%;">
+                                alt="Warehouse" style="height: 400px; width: 100%; object-fit: cover;">
                         </div>
                     </div>
                 </div>
@@ -925,7 +931,7 @@
             <!-- Section 5: Testimonials -->
             <section class="section-padding bg-light-luxury">
                 <div class="container">
-                    <div class="text-center mb-5">
+                    <div class="text-center mb-4">
                         <span class="section-title">Testimonials</span>
                         <h2 class="section-heading">What Our Clients Say</h2>
                     </div>
@@ -937,7 +943,7 @@
                                     <p class="fs-5 fst-italic text-muted">"Apex Industrial transformed our procurement
                                         process. Their logistics team ensured we never faced downtime, even during peak
                                         season."</p>
-                                    <div class="mt-4">
+                                    <div class="mt-3">
                                         <strong>Robert V.</strong>
                                         <p class="text-muted mb-0">COO, Alpha Construction</p>
                                     </div>
@@ -948,7 +954,7 @@
                                     <i class="bi bi-quote quote-icon"></i>
                                     <p class="fs-5 fst-italic text-muted">"The quality of the precision tools is
                                         unmatched. We have reduced our error rate by 15% since switching to Apex."</p>
-                                    <div class="mt-4">
+                                    <div class="mt-3">
                                         <strong>Sarah L.</strong>
                                         <p class="text-muted mb-0">Director of Quality, TechMach</p>
                                     </div>
@@ -974,19 +980,19 @@
                 <div class="container">
                     <div class="row text-center">
                         <div class="col-md-3 mb-4">
-                            <h2 class="fw-bold display-4">25+</h2>
+                            <h2 class="fw-bold display-6">25+</h2>
                             <p>Years Experience</p>
                         </div>
                         <div class="col-md-3 mb-4">
-                            <h2 class="fw-bold display-4">10k+</h2>
+                            <h2 class="fw-bold display-6">10k+</h2>
                             <p>Products Delivered</p>
                         </div>
                         <div class="col-md-3 mb-4">
-                            <h2 class="fw-bold display-4">500+</h2>
+                            <h2 class="fw-bold display-6">500+</h2>
                             <p>Enterprise Clients</p>
                         </div>
                         <div class="col-md-3 mb-4">
-                            <h2 class="fw-bold display-4">24/7</h2>
+                            <h2 class="fw-bold display-6">24/7</h2>
                             <p>Support Available</p>
                         </div>
                     </div>
@@ -996,7 +1002,7 @@
             <!-- Section 7: Quick Capabilities Grid -->
             <section class="section-padding">
                 <div class="container">
-                    <div class="text-center mb-5">
+                    <div class="text-center mb-4">
                         <span class="section-title">Core Strengths</span>
                         <h2 class="section-heading">Our Operational Reach</h2>
                     </div>
@@ -1066,9 +1072,9 @@
             <!-- Section 1: Split Hero -->
             <section class="hero-split">
                 <div class="col-lg-6 p-0 hero-split-text order-lg-1 order-2">
-                    <div class="container ps-lg-5">
-                        <h1 class="display-3 fw-bold mb-3">Precision.<br>Power.<br>Performance.</h1>
-                        <p class="lead mb-4 opacity-75">The next generation of industrial components. Designed for the
+                    <div class="container ps-lg-4">
+                        <h1 class="display-4 fw-bold mb-3">Precision.<br>Power.<br>Performance.</h1>
+                        <p class="lead mb-3 opacity-75">The next generation of industrial components. Designed for the
                             demands of modern engineering.</p>
                         <a href="#" onclick="switchPage('about')" class="btn btn-luxury">Discover More</a>
                     </div>
@@ -1084,7 +1090,7 @@
                             <img src="https://picsum.photos/seed/factory2/600/500" class="img-fluid rounded shadow"
                                 alt="Features">
                         </div>
-                        <div class="col-lg-6 ps-lg-5">
+                        <div class="col-lg-6 ps-lg-4">
                             <span class="section-title">Core Features</span>
                             <h2 class="section-heading">Why Industry Leaders Choose Us</h2>
 
@@ -1118,13 +1124,13 @@
             <!-- Section 3: Grid Showcase -->
             <section class="section-padding bg-light-luxury">
                 <div class="container">
-                    <div class="text-center mb-5">
+                    <div class="text-center mb-4">
                         <span class="section-title">Our Portfolio</span>
                         <h2 class="section-heading">Recent Projects</h2>
                     </div>
                     <div class="row g-3">
                         <div class="col-md-6 col-lg-4">
-                            <div class="position-relative overflow-hidden group">
+                            <div class="position-relative group">
                                 <img src="https://picsum.photos/seed/proj1/600/400" class="img-fluid w-100"
                                     alt="Project">
                                 <div class="position-absolute bottom-0 start-0 bg-dark text-white p-3 w-100 m-3 rounded"
@@ -1134,7 +1140,7 @@
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-4">
-                            <div class="position-relative overflow-hidden group">
+                            <div class="position-relative group">
                                 <img src="https://picsum.photos/seed/proj2/600/400" class="img-fluid w-100"
                                     alt="Project">
                                 <div class="position-absolute bottom-0 start-0 bg-dark text-white p-3 w-100 m-3 rounded"
@@ -1144,7 +1150,7 @@
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-4">
-                            <div class="position-relative overflow-hidden group">
+                            <div class="position-relative group">
                                 <img src="https://picsum.photos/seed/proj3/600/400" class="img-fluid w-100"
                                     alt="Project">
                                 <div class="position-absolute bottom-0 start-0 bg-dark text-white p-3 w-100 m-3 rounded"
@@ -1185,8 +1191,8 @@
             <section class="section-padding" style="background-color: #1a1a1a; color: #fff;">
                 <div class="container text-center">
                     <i class="bi bi-quote fs-1 text-warning mb-3"></i>
-                    <h3 class="display-5 fw-light fst-italic mb-4">"The most reliable supplier we have worked with in
-                        last decade. Apex sets the bar."</h3>
+                    <h3 class="fw-light fst-italic mb-4">"The most reliable supplier we have worked with in
+                        last decade. Apex sets bar."</h3>
                     <div>
                         <strong>James Carter</strong>
                         <p class="mb-0 text-white-50">CEO, Global Tech Industries</p>
@@ -1197,27 +1203,27 @@
             <!-- Section 6: Workflow Timeline -->
             <section class="section-padding bg-light-luxury">
                 <div class="container">
-                    <div class="text-center mb-5">
+                    <div class="text-center mb-4">
                         <span class="section-title">How It Works</span>
                         <h2 class="section-heading">Our Workflow</h2>
                     </div>
                     <div class="row">
-                        <div class="col-md-3 step-item mb-4">
+                        <div class="col-md-3 step-item">
                             <div class="step-number">1</div>
                             <h5>Consultation</h5>
                             <p class="text-muted small">We analyze your technical requirements.</p>
                         </div>
-                        <div class="col-md-3 step-item mb-4">
+                        <div class="col-md-3 step-item">
                             <div class="step-number">2</div>
                             <h5>Sourcing</h5>
                             <p class="text-muted small">We procure premium materials.</p>
                         </div>
-                        <div class="col-md-3 step-item mb-4">
+                        <div class="col-md-3 step-item">
                             <div class="step-number">3</div>
                             <h5>Production</h5>
                             <p class="text-muted small">Precision manufacturing begins.</p>
                         </div>
-                        <div class="col-md-3 step-item mb-4">
+                        <div class="col-md-3 step-item">
                             <div class="step-number">4</div>
                             <h5>Delivery</h5>
                             <p class="text-muted small">Global logistics to your doorstep.</p>
@@ -1229,9 +1235,9 @@
             <!-- Section 7: Parallax CTA -->
             <section class="parallax-section text-center">
                 <div class="container">
-                    <h2 class="display-4 fw-bold mb-4">Innovation Never Sleeps</h2>
-                    <p class="lead mb-4 w-75 mx-auto opacity-75">Join our R&D partnership program to access next-gen
-                        components before they hit the mass market.</p>
+                    <h2 class="fw-bold mb-3">Innovation Never Sleeps</h2>
+                    <p class="lead mb-3 w-75 mx-auto opacity-75">Join our R&D partnership program to access next-gen
+                        components before they hit mass market.</p>
                     <a href="#" class="btn btn-luxury btn-lg">Join R&D Network</a>
                 </div>
             </section>
@@ -1239,8 +1245,8 @@
             <!-- Section 8: Newsletter -->
             <section class="section-padding bg-light-luxury text-center">
                 <div class="container">
-                    <h2 class="text-primary mb-4">Stay Updated</h2>
-                    <p class="text-muted mb-4">Subscribe to our engineering journal for the latest trends.</p>
+                    <h2 class="text-primary mb-3">Stay Updated</h2>
+                    <p class="text-muted mb-3">Subscribe to our engineering journal for the latest trends.</p>
                     <div class="row justify-content-center">
                         <div class="col-md-6">
                             <div class="input-group">
@@ -1292,7 +1298,7 @@
                 <div class="container">
                     <div class="row text-center">
                         <div class="col-md-6">
-                            <div class="p-5 shadow-sm h-100 luxury-card">
+                            <div class="p-4 shadow-sm h-100 luxury-card">
                                 <i class="bi bi-bullseye icon-box"></i>
                                 <h3>Our Mission</h3>
                                 <p class="text-muted">To provide the highest quality industrial products and supply
@@ -1300,7 +1306,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="p-5 shadow-sm h-100 luxury-card">
+                            <div class="p-4 shadow-sm h-100 luxury-card">
                                 <i class="bi bi-eye icon-box"></i>
                                 <h3>Our Vision</h3>
                                 <p class="text-muted">To be the world's most trusted partner in industrial supply, known
@@ -1314,7 +1320,7 @@
             <!-- 4. Core Values -->
             <section class="section-padding">
                 <div class="container">
-                    <div class="text-center mb-5">
+                    <div class="text-center mb-4">
                         <span class="section-title">What We Stand For</span>
                         <h2 class="section-heading">Core Values</h2>
                     </div>
@@ -1378,21 +1384,21 @@
             <!-- 6. Our Approach -->
             <section class="section-padding">
                 <div class="container">
-                    <div class="text-center mb-5">
+                    <div class="text-center mb-4">
                         <span class="section-title">How We Work</span>
                         <h2 class="section-heading">Our Strategic Approach</h2>
                     </div>
                     <div class="row g-4">
                         <div class="col-md-4">
                             <div class="luxury-card">
-                                <h4 class=" mb-3">01. Analysis</h4>
+                                <h4 class="mb-3">01. Analysis</h4>
                                 <p class="text-muted">We begin by thoroughly analyzing your supply chain needs,
                                     identifying bottlenecks, and forecasting future requirements.</p>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="luxury-card">
-                                <h4 class=" mb-3">02. Strategy</h4>
+                                <h4 class="mb-3">02. Strategy</h4>
                                 <p class="text-muted">We develop a tailored procurement and logistics strategy designed
                                     to reduce costs and improve reliability.</p>
                             </div>
@@ -1411,9 +1417,9 @@
             <!-- 7. Sustainability (Parallax) -->
             <section class="parallax-section">
                 <div class="container text-center">
-                    <i class="bi bi-tree-fill display-4 mb-3 text-white"></i>
-                    <h2 class="mb-4">Commitment to Sustainability</h2>
-                    <p class="lead w-75 mx-auto mb-4">Apex Industrial is dedicated to reducing the environmental
+                    <i class="bi bi-tree-fill display-5 mb-3 text-white"></i>
+                    <h2 class="mb-3">Commitment to Sustainability</h2>
+                    <p class="lead w-75 mx-auto mb-3">Apex Industrial is dedicated to reducing the environmental
                         footprint of the manufacturing sector. We promote green logistics, recyclable packaging, and
                         energy-efficient operations.</p>
                     <a href="#" class="btn btn-outline-light">Read Our Impact Report</a>
@@ -1423,8 +1429,8 @@
             <!-- 8. Certifications -->
             <section class="section-padding bg-light-luxury text-center">
                 <div class="container">
-                    <h2 class="mb-4">Certified Excellence</h2>
-                    <div class="display-4 text-muted mb-4">
+                    <h2 class="mb-3">Certified Excellence</h2>
+                    <div class="display-5 text-muted mb-3">
                         <i class="bi bi-award-fill mx-2"></i>
                         <i class="bi bi-shield-check-fill mx-2"></i>
                         <i class="bi bi-patch-check-fill mx-2"></i>
@@ -1440,7 +1446,7 @@
                     <h2>Join Our Team</h2>
                     <p>We are always looking for talented individuals to help us shape the future of industrial supply.
                     </p>
-                    <a href="#" class="btn btn-luxury mt-3">View Careers</a>
+                    <a href="#" class="btn btn-luxury mt-2">View Careers</a>
                 </div>
             </section>
         </div>
@@ -1485,11 +1491,11 @@
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-lg-6"><img src="images/Advanced Logistics Network.jpg"
-                                class="img-fluid rounded shadow" alt="Logistics" style="width: 100%; height: 500px;">
+                                class="img-fluid rounded shadow" alt="Logistics" style="width: 100%; height: 350px; object-fit: cover;">
                         </div>
                         <div class="col-lg-6">
                             <h2 class="mb-3">Advanced Logistics Network</h2>
-                            <p>An advanced logistics network enables fast, reliable, and compliant movement of
+                            <p class="mb-3">An advanced logistics network enables fast, reliable, and compliant movement of
                                 industrial goods across regional and global supply chains. Built on integrated
                                 warehousing, transportation, and digital visibility, it ensures consistent delivery
                                 performance while reducing lead times, risk, and operational complexity.
@@ -1519,16 +1525,16 @@
                 <div class="container text-center"><span class="section-title">After Sales</span>
                     <h2 class="section-heading">Maintenance & Support</h2>
                     <div class="row g-4">
-                        <div class="col-md-3"><i class="bi bi-wrench-adjustable-circle display-4 text-primary mb-3"></i>
+                        <div class="col-md-3"><i class="bi bi-wrench-adjustable-circle display-5 text-primary mb-3"></i>
                             <h5>Installation</h5>
                         </div>
-                        <div class="col-md-3"><i class="bi bi-calendar-check display-4 text-primary mb-3"></i>
+                        <div class="col-md-3"><i class="bi bi-calendar-check display-5 text-primary mb-3"></i>
                             <h5>Routine Checks</h5>
                         </div>
-                        <div class="col-md-3"><i class="bi bi-lightning-charge display-4 text-primary mb-3"></i>
+                        <div class="col-md-3"><i class="bi bi-lightning-charge display-5 text-primary mb-3"></i>
                             <h5>Emergency Repair</h5>
                         </div>
-                        <div class="col-md-3"><i class="bi bi-arrow-repeat display-4 text-primary mb-3"></i>
+                        <div class="col-md-3"><i class="bi bi-arrow-repeat display-5 text-primary mb-3"></i>
                             <h5>Part Replacement</h5>
                         </div>
                     </div>
@@ -1556,12 +1562,12 @@
             <!-- 2. Featured -->
             <section class="section-padding">
                 <div class="container">
-                    <div class="card border-0 shadow-lg overflow-hidden">
+                    <div class="card border-0 shadow-lg">
                         <div class="row g-0">
                             <div class="col-md-6"><img src="https://picsum.photos/seed/techblog/800/600"
                                     class="img-fluid h-100 object-fit-cover" alt="Featured"></div>
                             <div class="col-md-6">
-                                <div class="card-body p-5"><span class="badge bg-primary mb-2">Featured</span>
+                                <div class="card-body p-4"><span class="badge bg-primary mb-2">Featured</span>
                                     <h2 class="card-title mb-3">The Future of Automation</h2>
                                     <p class="card-text">The future of automation is intelligent, connected,
                                         and adaptable. It moves beyond fixed, task-based systems to integrated
@@ -1626,7 +1632,7 @@
             </section>
             <!-- 4. Newsletter -->
             <section class="section-padding text-center">
-                <div class="container"><i class="bi bi-envelope-paper display-4 text-primary mb-3"></i>
+                <div class="container"><i class="bi bi-envelope-paper display-5 text-primary mb-3"></i>
                     <h2>Subscribe to our Newsletter</h2>
                     <div class="row justify-content-center">
                         <div class="col-md-6">
@@ -1668,8 +1674,8 @@
                         <div class="col-lg-4 mb-4">
                             <div class="luxury-card text-center">
                                 <h4 class="text-muted">Standard</h4>
-                                <h2 class="display-4 my-3">$0</h2>
-                                <p class="text-muted mb-4">For small businesses</p>
+                                <h2 class="display-4 my-2">$0</h2>
+                                <p class="text-muted mb-3">For small businesses</p>
                                 <ul class="list-unstyled text-start mb-4 mx-auto">
                                     <li class="mb-2"><i class="bi bi-check text-primary me-2"></i> Catalog Access</li>
                                     <li class="mb-2"><i class="bi bi-check text-primary me-2"></i> Standard Shipping
@@ -1682,8 +1688,8 @@
                                 style="border: 2px solid var(--primary-color) !important; transform: scale(1.05);"><span
                                     class="badge bg-primary position-absolute top-0 start-50 translate-middle">POPULAR</span>
                                 <h4 class="text-primary mt-2">Professional</h4>
-                                <h2 class="display-4 my-3">$49<span class="fs-6 text-muted">/mo</span></h2>
-                                <p class="text-muted mb-4">For growing teams</p>
+                                <h2 class="display-4 my-2">$49<span class="fs-6 text-muted">/mo</span></h2>
+                                <p class="text-muted mb-3">For growing teams</p>
                                 <ul class="list-unstyled text-start mb-4 mx-auto">
                                     <li class="mb-2"><i class="bi bi-check text-primary me-2"></i> Everything in
                                         Standard</li>
@@ -1694,8 +1700,8 @@
                         <div class="col-lg-4 mb-4">
                             <div class="luxury-card text-center">
                                 <h4 class="text-muted">Enterprise</h4>
-                                <h2 class="display-4 my-3">Custom</h2>
-                                <p class="text-muted mb-4">For large organizations</p>
+                                <h2 class="display-4 my-2">Custom</h2>
+                                <p class="text-muted mb-3">For large organizations</p>
                                 <ul class="list-unstyled text-start mb-4 mx-auto">
                                     <li class="mb-2"><i class="bi bi-check text-primary me-2"></i> Dedicated Account
                                         Manager</li>
@@ -1718,7 +1724,7 @@
             <!-- 6. CTA -->
             <section class="section-padding bg-light-luxury text-center">
                 <div class="container">
-                    <h2>Not sure which plan is right for you?</h2><button class="btn btn-luxury mt-3"
+                    <h2>Not sure which plan is right for you?</h2><button class="btn btn-luxury mt-2"
                         onclick="switchPage('contact')">Talk to an Expert</button>
                 </div>
             </section>
@@ -1804,7 +1810,7 @@
             <section class="section-padding bg-light-luxury text-center">
                 <div class="container">
                     <h3>Customer Support Hours</h3>
-                    <div class="row mt-4">
+                    <div class="row mt-3">
                         <div class="col-md-4">
                             <h5>Sales</h5>
                             <p class="text-muted">Mon-Fri: 8am - 8pm EST</p>
@@ -1837,12 +1843,12 @@
     <!-- UPDATED FOOTER DESIGN -->
     <footer>
         <div class="container position-relative" style="z-index: 2;">
-            <div class="row g-5">
+            <div class="row g-4">
 
                 <!-- Column 1: Brand & About -->
                 <div class="col-lg-3 footer-col">
                     <div class="footer-logo">
-                        <img src="images/b2b_logo.png" width="120px" alt="Apex Industrial">
+                        <img src="images/b2b_logo.png" width="100px" alt="Apex Industrial">
                     </div>
                     <p class="footer-desc">
                         B2B Industrial Supplier Catalog. We provide verified sourcing,
@@ -1850,7 +1856,7 @@
                         operations.
                     </p>
                     <!-- Social Icons -->
-                    <div class="footer-social-links mt-4">
+                    <div class="footer-social-links mt-3">
                         <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
                         <!-- <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a> -->
                         <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
@@ -1898,7 +1904,7 @@
                 <div class="col-lg-3 col-md-6 footer-col">
                     <h4 class="footer-title">Contact Us</h4>
 
-                    <ul class="contact-info list-unstyled mb-4">
+                    <ul class="contact-info list-unstyled mb-3">
                         <li>
                             <i class="bi bi-geo-alt-fill"></i>
                             <span>123 Industrial Blvd, Sector 4<br>Chicago, IL 60601, USA</span>
@@ -1922,7 +1928,7 @@
         <!-- Footer Bottom Bar -->
         <div class="footer-bottom">
             <div class="container d-md-flex justify-content-between align-items-center">
-                <div class="mb-3 mb-md-0 text-center text-md-start">
+                <div class="mb-2 mb-md-0 text-center text-md-start">
                     <p class="mb-0 text-white-50">&copy; 2026 B2B Industrial Supplier Catalog. All rights reserved.</p>
                 </div>
                 <div class="text-center text-md-end">
