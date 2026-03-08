@@ -18,8 +18,8 @@
             --secondary-color: #334155;
             /* Slate */
             --accent-color: #d4af37;
-            /* Safety Orange */
-            --accent-hover: #d4af37;
+            /* Safety Gold */
+            --accent-hover: #c9a432;
 
             /* Backgrounds */
             --bg-body: #f1f5f9;
@@ -35,10 +35,12 @@
             --border-color: #e2e8f0;
             --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
             --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.05);
+            --shadow-cta: 0 4px 14px 0 rgba(212, 175, 55, 0.39);
+            /* Specific shadow for Gold CTA */
             --focus-ring: rgba(15, 23, 42, 0.1);
 
             --success-color: #10b981;
-            --error-color: #d4af37;
+            --error-color: #ef4444;
             --transition: all 0.3s ease;
         }
 
@@ -58,8 +60,8 @@
 
             --border-color: #334155;
             --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.5);
-            --focus-ring: rgba(234, 88, 12, 0.2);
-            /* Orange focus ring in dark mode */
+            --shadow-cta: 0 4px 14px 0 rgba(212, 175, 55, 0.3);
+            --focus-ring: rgba(212, 175, 55, 0.2);
         }
 
         * {
@@ -90,7 +92,8 @@
         /* Main Form Section */
         .form-section {
             background-color: var(--bg-card);
-            border-radius: 12px;
+            border-radius: 16px;
+            /* Slightly increased radius */
             box-shadow: var(--shadow-md);
             padding: 3rem;
             position: relative;
@@ -150,44 +153,62 @@
             transform: translateY(-2px);
         }
 
-        .header-logo-link i {
-            color: var(--accent-color);
-            font-size: 1.6rem;
-        }
-
-        /* Toggle Switch (Login vs Signup) */
+        /* =========================================
+           UPDATED: CTA Style Toggle Switch 
+           ========================================= */
         .form-toggle {
             display: flex;
             margin-bottom: 3rem;
-            border-bottom: 2px solid var(--border-color);
-            transition: border-color 0.3s ease;
+            background-color: var(--bg-input);
+            border-radius: 50px;
+            /* Pill shape container */
+            padding: 5px;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
         }
 
         .toggle-btn {
             flex: 1;
-            padding: 1rem;
-            background: none;
+            padding: 0.85rem 1rem;
+            background: transparent;
             border: none;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 600;
             color: var(--text-muted);
             cursor: pointer;
-            transition: var(--transition);
+            transition: all 0.3s ease;
             position: relative;
+            z-index: 2;
+            border-radius: 50px;
+            /* Pill shape buttons */
         }
 
+        /* Active State - Solid CTA Button Look */
         .toggle-btn.active {
-            color: var(--primary-color);
+            color: var(--text-on-accent);
+            /* White text */
+            background-color: var(--accent-color);
+            /* Gold background */
+            box-shadow: var(--shadow-cta);
+            /* Colored shadow */
+            transform: scale(1.02);
+            /* Slight pop effect */
         }
 
+        /* Remove old underline */
         .toggle-btn.active::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: var(--accent-color);
+            display: none;
+        }
+
+        /* Hover for inactive buttons */
+        .toggle-btn:not(.active):hover {
+            color: var(--text-main);
+            background-color: rgba(0, 0, 0, 0.03);
+        }
+
+        body.dark-mode .toggle-btn:not(.active):hover {
+            background-color: rgba(255, 255, 255, 0.05);
         }
 
         /* Forms Styling */
@@ -254,15 +275,9 @@
 
         .form-input:focus {
             outline: none;
-            border-color: var(--primary-color);
-            /* Use primary text color for border in dark mode */
+            border-color: var(--accent-color);
             background-color: var(--bg-card);
             box-shadow: 0 0 0 3px var(--focus-ring);
-        }
-
-        /* Fix for focus border in dark mode (force orange border in dark mode if desired) */
-        body.dark-mode .form-input:focus {
-            border-color: var(--accent-color);
         }
 
         .form-input.error {
@@ -303,22 +318,28 @@
             color: var(--primary-color);
             text-decoration: none;
             font-weight: 500;
+            transition: color 0.2s;
         }
 
         .forgot-pass:hover {
-            text-decoration: underline;
+            color: var(--accent-color);
         }
 
-        /* Submit Button */
+        /* =========================================
+           UPDATED: CTA Submit Button Style
+           ========================================= */
         .btn-submit {
             width: 100%;
             padding: 1rem;
             background-color: var(--accent-color);
             color: var(--text-on-accent);
             border: none;
-            border-radius: 6px;
+            /* Pill Shape CTA */
+            border-radius: 50px;
             font-size: 1rem;
-            font-weight: 600;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             cursor: pointer;
             transition: var(--transition);
             display: flex;
@@ -326,12 +347,13 @@
             align-items: center;
             gap: 0.5rem;
             margin-top: 1rem;
+            box-shadow: var(--shadow-cta);
         }
 
         .btn-submit:hover {
             background-color: var(--accent-hover);
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-sm);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
         }
 
         .btn-submit:active {
@@ -457,13 +479,13 @@
                 <!-- Logo Link at the top -->
                 <div class="form-header-logo">
                     <a href="index.html" class="header-logo-link" title="Back to Home">
-                       <img src="images/logo (5).png" width="150px" alt="">
-                       
-                        <!-- <span>NEXUS INDUSTRIAL</span> -->
+                        <img src="images/logo (5).png" width="150px" alt="">
                     </a>
-                    <h3>Industrial Supplier Catalog</h3>
+                    <h3 style="margin-top: 15px; font-weight: 500; color: var(--text-muted);">Industrial Supplier
+                        Catalog</h3>
                 </div>
 
+                <!-- UPDATED: Pill Style Toggle -->
                 <div class="form-toggle">
                     <button class="toggle-btn active" id="btnShowLogin">Sign In</button>
                     <button class="toggle-btn" id="btnShowSignup">Apply for Account</button>
@@ -495,15 +517,18 @@
                         <label class="remember-me">
                             <input type="checkbox"> Keep me signed in
                         </label>
-                        <a href="#" class="forgot-pass">Forgot Password?</a>
-                        <a href="index.html" class="forgot-pass">Back to Home</a>
+                        <div>
+                            <a href="#" class="forgot-pass">Forgot Password?</a>
+                            <span style="margin: 0 5px; color: var(--text-muted);">|</span>
+                            <a href="index.html" class="forgot-pass">Back to Home</a>
+                        </div>
                     </div>
 
                     <button type="submit" class="btn-submit">
                         <span class="btn-text">Sign In</span>
                         <div class="spinner"></div>
                     </button>
-                    
+
                 </form>
 
                 <!-- Signup Form (B2B Specific) -->
@@ -583,12 +608,12 @@
                     </button>
 
                     <p style="font-size: 0.8rem; color: var(--text-muted); text-align: center; margin-top: 0.5rem;">
-                        By applying, you agree to our <a href="#" style="color: var(--primary-color);">Terms of
-                            Service</a> and <a href="#" style="color: var(--primary-color);">Privacy Policy</a>.
+                        By applying, you agree to our <a href="#" style="color: var(--accent-color);">Terms of
+                            Service</a> and <a href="#" style="color: var(--accent-color);">Privacy Policy</a>.
                     </p>
-                    <p style="font-size: 16px; color: var(--text-muted); text-align: center; margin-top:-10px;">
-                       
-                            <a href="#" style="color: var(--primary-color); text-decoration: none; font-weight: 600; ">Already have any Account? <a href="login_signup.html" style="color: #d4af37; font-weight: 800;">Login</a></a>.
+                    <p style="font-size: 14px; color: var(--text-muted); text-align: center; margin-top:-10px;">
+                        Already have an Account? <a href="login_signup.html"
+                            style="color: var(--accent-color); font-weight: 800; text-decoration: none;">Login</a>
                     </p>
                 </form>
             </div>
