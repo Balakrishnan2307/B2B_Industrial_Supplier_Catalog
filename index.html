@@ -219,6 +219,15 @@
             overflow: hidden;
         }
 
+        /* NEW: Center alignment for standard hero sections */
+        .hero-section .container {
+            text-align: center;
+        }
+
+        .hero-section .row {
+            justify-content: center;
+        }
+
         .hero-split {
             height: 70vh;
             display: flex;
@@ -235,6 +244,9 @@
             flex-direction: column;
             justify-content: center;
             padding: 30px;
+            /* NEW: Center alignment for split hero text */
+            text-align: center;
+            align-items: center;
         }
 
         .hero-split-img {
@@ -345,7 +357,7 @@
             padding: 20px;
             border-radius: 4px;
             box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+            transition: transform 0.3s ease, background-color 0.3s ease, border-color  0.3s ease;
             height: 100%;
             position: relative;
         }
@@ -468,67 +480,84 @@
             margin-bottom: 15px;
         }
 
-        /* --- FOOTER STYLES --- */
+        /* --- NEW FOOTER STYLES --- */
         footer {
-            background-color: var(--primary-color);
+            background-color: #0f111a; /* Darker than primary for contrast */
             color: #fff;
-            padding-top: 50px;
-            border-top: 5px solid var(--accent-color);
             font-family: var(--font-body);
             position: relative;
-            overflow: hidden;
         }
 
-        footer::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: radial-gradient(#ffffff 1px, transparent 1px);
-            background-size: 20px 20px;
-            opacity: 0.03;
-            pointer-events: none;
+        /* Newsletter Top Section */
+        .footer-newsletter {
+            background-color: rgba(212, 175, 55, 0.1); /* Accent color with opacity */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 40px 0;
         }
 
-        .footer-logo {
+        .footer-newsletter h4 {
+            color: var(--accent-color);
+            font-family: var(--font-heading);
+        }
+
+        .footer-newsletter .form-control {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+
+        .footer-newsletter .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer-newsletter .form-control:focus {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-color: var(--accent-color);
+            box-shadow: none;
+            color: #fff;
+        }
+
+        /* Main Footer Content */
+        .footer-main {
+            padding: 60px 0 40px;
+        }
+
+        .footer-brand img {
+            filter: brightness(0) invert(1); /* Make logo white */
             margin-bottom: 1rem;
-            display: inline-block;
         }
 
-        .footer-desc {
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.5;
-            margin-bottom: 1rem;
+        .footer-about-text {
+            color: #a0a0b0;
             font-size: 0.9rem;
+            line-height: 1.8;
+            margin-top: -10px;
         }
 
         .footer-title {
-            color: var(--accent-color);
+            color: #fff;
             font-family: var(--font-heading);
-            font-size: 0.9rem;
+            font-size: 1rem;
+            margin-top: 40px;
             font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             position: relative;
-            display: inline-block;
+            padding-bottom: 10px;
         }
 
         .footer-title::after {
             content: '';
             position: absolute;
-            bottom: -8px;
             left: 0;
-            width: 30px;
+            bottom: 0;
+            width: 40px;
             height: 2px;
             background-color: var(--accent-color);
-            transition: width 0.3s ease;
         }
 
-        .footer-col:hover .footer-title::after {
-            width: 100%;
+        [dir="rtl"] .footer-title::after {
+            right: 0;
+            left: auto;
         }
 
         .footer-links {
@@ -538,114 +567,122 @@
         }
 
         .footer-links li {
-            margin-bottom: 8px;
+            margin-bottom: 12px;
         }
 
         .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
+            color: #a0a0b0;
             text-decoration: none;
             transition: all 0.3s ease;
-            display: inline-block;
-            position: relative;
-            padding-left: 15px;
             font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
         }
 
-        [dir="rtl"] .footer-links a {
-            padding-left: 0;
-            padding-right: 15px;
-        }
-
-        .footer-links a::before {
-            content: '\F285';
-            font-family: 'bootstrap-icons';
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--accent-color);
-            opacity: 0;
-            transition: all 0.3s ease;
-            font-size: 0.8rem;
-        }
-
-        [dir="rtl"] .footer-links a::before {
-            left: auto;
-            right: 0;
-            transform: translateY(-50%) rotate(180deg);
-        }
-
-        .footer-links a:hover {
-            color: #fff;
-            padding-left: 20px;
-        }
-
-        [dir="rtl"] .footer-links a:hover {
-            padding-left: 0;
-            padding-right: 20px;
-        }
-
-        .footer-links a:hover::before {
-            opacity: 1;
-            left: 5px;
-        }
-
-        [dir="rtl"] .footer-links a:hover::before {
-            left: auto;
-            right: 5px;
-        }
-
-        .contact-info li {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 10px;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
-        }
-
-        .contact-info i {
-            color: var(--accent-color);
+        .footer-links a i {
+            font-size: 0.7rem;
             margin-right: 10px;
-            margin-top: 4px;
-            font-size: 1rem;
+            color: var(--accent-color);
+            transition: transform 0.3s ease;
         }
 
-        [dir="rtl"] .contact-info i {
+        [dir="rtl"] .footer-links a i {
             margin-right: 0;
             margin-left: 10px;
         }
 
-        .footer-bottom {
-            background-color: #1e203a;
-            padding: 15px 0;
-            margin-top: 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        .footer-links a:hover {
+            color: #fff;
+            padding-left: 5px;
         }
 
-        .footer-social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 35px;
-            height: 35px;
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-            border-radius: 50%;
-            margin-right: 8px;
-            transition: all 0.3s ease;
-            text-decoration: none;
+        [dir="rtl"] .footer-links a:hover {
+            padding-left: 0;
+            padding-right: 5px;
+        }
+
+        .footer-links a:hover i {
+            transform: translateX(3px);
+        }
+
+        /* Contact Info */
+        .footer-contact-item {
+            display: flex;
+            margin-bottom: 20px;
+            color: #a0a0b0;
             font-size: 0.9rem;
         }
 
-        .footer-social-links a:hover {
+        .footer-contact-item i {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            margin-right: 15px;
+            margin-top: 3px;
+        }
+
+        [dir="rtl"] .footer-contact-item i {
+            margin-right: 0;
+            margin-left: 15px;
+        }
+
+        /* Social Icons */
+        .footer-social {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
             background: var(--accent-color);
+            border-color: var(--accent-color);
             transform: translateY(-3px);
         }
 
-        [dir="rtl"] .footer-social-links a {
-            margin-right: 0;
-            margin-left: 8px;
+        /* Certifications Strip */
+        .footer-certifications {
+            background-color: #080910;
+            padding: 20px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
+
+        .cert-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: #6c757d;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cert-item i {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+        }
+
+        /* Footer Bottom */
+        .footer-bottom {
+            background-color: #000000;
+            padding: 15px 0;
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+
 
         /* --- Map --- */
         .map-container iframe {
@@ -718,8 +755,8 @@
                     <li class="nav-item"><a class="nav-link" href="#" onclick="switchPage('contact')"
                             data-page="contact">Contact</a></li>
                     <li class="nav-item"><a class="nav-link" href="login_signup.html">Login/Signup</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" onclick="switchPage('dashboard')"
-                            data-page="dashboard">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="dashboard.html"
+                            >Dashboard</a></li>
                 </ul>
 
                 <div class="nav-controls ms-3">
@@ -743,7 +780,7 @@
             <section class="hero-section">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-8">
+                        <div class="col-lg-10">
                             <h1 class="hero-title">Engineering Excellence for Global Industries</h1>
                             <p class="lead mb-3 opacity-75">Premium industrial supplies, machinery components, and
                                 logistical solutions tailored for enterprise-grade operations.</p>
@@ -2005,69 +2042,138 @@
 
     </main>
 
-    <!-- FOOTER DESIGN -->
+    <!-- ================= NEW FOOTER DESIGN ================= -->
     <footer>
-        <div class="container position-relative" style="z-index: 2;">
-            <div class="row g-4">
-                <div class="col-lg-3 footer-col">
-                    <div class="footer-logo"><img src="images/logo (5).png" width="100px" alt="Apex Industrial"></div>
-                    <p class="footer-desc">B2B Industrial Supplier Catalog. We provide verified sourcing, precision
-                        manufacturing, and advanced logistics.</p>
-                    <div class="footer-social-links mt-3">
-                        <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
-                        <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+        <!-- Newsletter Top Section -->
+        <div class="footer-newsletter">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 mb-4 mb-lg-0">
+                        <h4>Subscribe to our Newsletter</h4>
+                        <p class="text-white-50 mb-0">Get the latest industrial insights and product updates directly to your inbox.</p>
                     </div>
-                </div>
-                <div class="col-lg-2 col-md-6 footer-col">
-                    <h4 class="footer-title">Solutions</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Industrial Automation</a></li>
-                        <li><a href="#">Advanced Robotics</a></li>
-                        <li><a href="#">Safety Equipment</a></li>
-                        <li><a href="#">Logistics Network</a></li>
-                        <li><a href="#">Custom Fabrication</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-2 col-md-6 footer-col">
-                    <h4 class="footer-title">Company</h4>
-                    <ul class="footer-links">
-                        <li><a href="#" onclick="switchPage('about')">About Us</a></li>
-                        <li><a href="#">Leadership Team</a></li>
-                        <li><a href="#">Careers & Jobs</a></li>
-                        <li><a href="#" onclick="switchPage('blog')">News & Insights</a></li>
-                        <li><a href="#" onclick="switchPage('contact')">Contact Support</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-2 col-md-6 footer-col">
-                    <h4 class="footer-title">Support</h4>
-                    <ul class="footer-links">
-                        <!-- <li><a href="#">Help Center</a></li> -->
-                        <li><a href="#">Help Center</a></li>
-                        <li><a href="#">Order Tracking</a></li>
-                        <li><a href="#">Returns Policy</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-md-6 footer-col">
-                    <h4 class="footer-title">Contact Us</h4>
-                    <ul class="contact-info list-unstyled mb-3">
-                        <li><span>123 Industrial Blvd, Sector 4<br>Chicago, IL 60601,
-                                USA</span></li>
-                        <li><span>+1 (800) 555-0199</span></li>
-                        <li><span>sales@apexindustrial.com</span></li>
-                    </ul>
+                    <div class="col-lg-6">
+                        <form class="d-flex">
+                            <input type="email" class="form-control me-2" placeholder="Enter your email address" aria-label="Email">
+                            <button class="btn btn-luxury" type="submit">Subscribe</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- Main Footer Content -->
+        <div class="footer-main">
+            <div class="container">
+                <div class="row g-4">
+                    <!-- Column 1: Brand -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="footer-brand">
+                            <img src="images/logo (5).png" width="120px" alt="Apex Industrial">
+                        </div>
+                        <p class="footer-about-text mt-3">
+                            Apex Industrial is a global leader in B2B supply chain solutions, providing premium industrial components, logistics, and fabrication services to enterprise clients worldwide.
+                        </p>
+                        <div class="footer-social">
+                            <a href="#"><i class="bi bi-linkedin"></i></a>
+                            <a href="#"><i class="bi bi-twitter-x"></i></a>
+                            <a href="#"><i class="bi bi-facebook"></i></a>
+                            <a href="#"><i class="bi bi-instagram"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Column 2: Quick Links -->
+                    <div class="col-lg-2 col-md-6">
+                        <h5 class="footer-title">Quick Links</h5>
+                        <ul class="footer-links">
+                            <li><a href="#" onclick="switchPage('about')">About Us</a></li>
+                            <li><a href="#" onclick="switchPage('services')">Our Services</a></li>
+                            <li><a href="#" onclick="switchPage('pricing')">Pricing Plans</a></li>
+                            <li><a href="#" onclick="switchPage('blog')">News & Blog</a></li>
+                            <li><a href="#" onclick="switchPage('contact')">Contact Us</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 3: Industries -->
+                    <div class="col-lg-2 col-md-6">
+                        <h5 class="footer-title">Industries</h5>
+                        <ul class="footer-links">
+                            <li><a href="#">Automotive</a></li>
+                            <li><a href="#">Aerospace</a></li>
+                            <li><a href="#">Manufacturing</a></li>
+                            <li><a href="#">Energy & Utilities</a></li>
+                            <li><a href="#">Construction</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 4: Contact Info -->
+                    <div class="col-lg-4 col-md-6">
+                        <h5 class="footer-title">Contact Us</h5>
+                        
+                        <div class="footer-contact-item">
+                            <i class="bi bi-geo-alt-fill"></i>
+                            <div>
+                                <strong>Headquarters</strong><br>
+                                123 Industrial Blvd, Sector 4<br>
+                                Chicago, IL 60601, USA
+                            </div>
+                        </div>
+
+                        <div class="footer-contact-item">
+                            <i class="bi bi-telephone-fill"></i>
+                            <div>
+                                <strong>Phone</strong><br>
+                                +1 (800) 555-0199<br>
+                                Mon - Fri, 9am - 5pm EST
+                            </div>
+                        </div>
+
+                        <div class="footer-contact-item">
+                            <i class="bi bi-envelope-fill"></i>
+                            <div>
+                                <strong>Email</strong><br>
+                                sales@apexindustrial.com<br>
+                                support@apexindustrial.com
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Certifications Strip -->
+        <div class="footer-certifications">
+            <div class="container">
+                <div class="row align-items-center text-center">
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <div class="cert-item">
+                            <i class="bi bi-shield-check"></i> ISO 9001:2015 Certified
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <div class="cert-item">
+                            <i class="bi bi-globe"></i> Global Logistics Partner
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="cert-item">
+                            <i class="bi bi-award"></i> Industry Excellence Award
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
         <div class="footer-bottom">
             <div class="container d-md-flex justify-content-between align-items-center">
                 <div class="mb-2 mb-md-0 text-center text-md-start">
-                    <p class="mb-0 text-white-50">&copy; 2026 B2B Industrial Supplier Catalog. All rights reserved.</p>
+                    <p class="mb-0">&copy; 2026 B2B Industrial Supplier Catalog. All rights reserved.</p>
                 </div>
                 <div class="text-center text-md-end">
-                    <p class="mb-0 text-white-50">Designed for Industrial Excellence.</p>
+                    <a href="#" class="text-muted me-3">Privacy Policy</a>
+                    <a href="#" class="text-muted me-3">Terms of Use</a>
+                    <a href="#" class="text-muted">Cookie Policy</a>
                 </div>
             </div>
         </div>
