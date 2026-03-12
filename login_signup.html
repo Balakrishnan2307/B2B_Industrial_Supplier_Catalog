@@ -160,7 +160,7 @@
             display: flex;
             margin-bottom: 3rem;
             background-color: var(--bg-input);
-            border-radius: 50px;
+            /* border-radius: 50px; */
             /* Pill shape container */
             padding: 5px;
             border: 1px solid var(--border-color);
@@ -180,7 +180,7 @@
             transition: all 0.3s ease;
             position: relative;
             z-index: 2;
-            border-radius: 50px;
+            /* border-radius: 50px; */
             /* Pill shape buttons */
         }
 
@@ -190,7 +190,7 @@
             /* White text */
             background-color: var(--accent-color);
             /* Gold background */
-            box-shadow: var(--shadow-cta);
+            /* box-shadow: var(--shadow-cta); */
             /* Colored shadow */
             transform: scale(1.02);
             /* Slight pop effect */
@@ -335,7 +335,7 @@
             color: var(--text-on-accent);
             border: none;
             /* Pill Shape CTA */
-            border-radius: 50px;
+            border-radius: 0px;
             font-size: 1rem;
             font-weight: 700;
             text-transform: uppercase;
@@ -347,13 +347,15 @@
             align-items: center;
             gap: 0.5rem;
             margin-top: 1rem;
-            box-shadow: var(--shadow-cta);
+            /* box-shadow: var(--shadow-cta); */
         }
 
         .btn-submit:hover {
-            background-color: var(--accent-hover);
+            background-color:white;
+            color: #c9a432;
+            border: 1px solid #c9a432;
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+            /* box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4); */
         }
 
         .btn-submit:active {
